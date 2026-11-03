@@ -1,0 +1,19 @@
+nav {
+    background-color: rgb(102, 165, 237);
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    font-size: 30px;
+    border-radius: 25px;
+    bottom: 10px;
+    left: 5px;
+    right: 5px;
+    
+}
+
+nav a{
+    display: flex;
+    margin: 10px;
+    padding: 1%;
+}
+
