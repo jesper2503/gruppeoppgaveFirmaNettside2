@@ -1,19 +1,41 @@
+main {
+    background-color: #FFF5E4;
+    width: 65%; 
+    border-radius: 25px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 120px;
+}
+
+@media(max-width: 600px) {
+    main {
+        background-color: red;
+    }
+}
+
+
+
 nav {
-    background-color: rgb(102, 165, 237);
+    background-color: #FFA725;
     display: flex;
     position: fixed;
     justify-content: space-around;
-    font-size: 30px;
     border-radius: 25px;
     bottom: 10px;
-    left: 5px;
-    right: 5px;
+    width: 65%;
+    height: 100px;
+    align-items: center;
     
 }
 
 nav a{
     display: flex;
-    margin: 10px;
-    padding: 1%;
+    margin: 5px;
+    padding: 5px;
 }
 
