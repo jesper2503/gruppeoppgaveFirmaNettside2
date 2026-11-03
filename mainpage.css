@@ -1,0 +1,9 @@
+main {
+    background-color: rgb(245 243 243 / 1);
+}
+
+@media(max-width: 600px) {
+    main {
+        background-color: red;
+    }
+}
