@@ -1,11 +1,22 @@
-import { titleCard } from "./titleCard.js";
+// Genererer brukeren sin titlecard i mainpage
+
+import { userInfo } from "./userInfo.js";
 
 const mainDiv = document.querySelector("#mainDiv");
 
-for (let i of titleCards) {
-    let div = document.createElement("div");
-    div.textContent = i;
-    div.classList.add("titleCard");
+const profilePic = document.createElement("img");
+profilePic.src = userInfo.profilePicture;
+profilePic.alt = userInfo.name;
 
-    mainDiv.append(div);
-}
+const name = document.createElement("h2");
+name.textContent = userInfo.name;
+
+const bio = document.createElement("p");
+bio.textContent = userInfo.bio;
+
+mainDiv.append(profilePic);
+mainDiv.append(name);
+mainDiv.append(bio);
+
+mainDiv.classList.add("titleCard");
+
