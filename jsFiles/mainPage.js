@@ -1,4 +1,4 @@
-import { titleCards } from "titleCards.js";
+import { titleCards } from "./titleCards.js";
 
 const mainDiv = document.querySelector("#mainDiv");
 
