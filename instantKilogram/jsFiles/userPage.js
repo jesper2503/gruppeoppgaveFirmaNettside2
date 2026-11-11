@@ -1,4 +1,4 @@
-import { userInfo } from "./userInfo.js";
+import { userInfo } from "/jsFiles/userInfo.js";
 
 function displayUserInfo() {
     //Profile picture

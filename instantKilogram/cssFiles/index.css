@@ -18,7 +18,7 @@ body{
     padding-bottom: 130px;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(45, 45, 45);
-    background-image: url(../assets/backgroundImage.jpg);
+    background-image: url(/assets/backgroundImage.jpg);
 }
 
 @media(max-width: 600px) {
