@@ -4,7 +4,7 @@ function makeNavBar() {
 
     //1st nav link
     const navLink1 = document.createElement("a");
-    navLink1.href = "/htmlFiles/index.html";
+    navLink1.href = "/index.html";
     const navImage1 = document.createElement("img");
     navImage1.src = "/assets/home_icon.png";
     navLink1.append(navImage1);
