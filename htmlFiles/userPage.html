@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../cssFiles/index.css">
+    <link rel="stylesheet" href="../cssFiles/userPage.css">
+</head>
+<body>
+    <main>
+        <header>
+            <div id="profilePicturePlacement">
+
+            </div>
+            <div id="infoSection">
+                <div class="userName">
+
+                </div>
+                <div class="userStats">
+                    <div class="userPosts userStatGap"><p>Posts:</p></div>
+                    <div class="userFollowers userStatGap"><p>Followers:</p></div>
+                    <div class="userFollowing userStatGap"><p>Following:</p></div>
+                </div>
+                <div class="userBio">
+
+                </div>
+            </div>
+            <button id="showModalButton"><img src="../assets/settingswheel.png" alt="" style="height: 60px; width: 60px;"></button>
+        </header>
+        <dialog id="settingsDialog">
+            <div style="display: flex; justify-content: space-between; padding-left: 20px; padding-right: 10px; border: solid; background-color: #FFA725; border-color: #cb8720; border-width: 4px;"><h2>User Settings</h2><button id="hideModalButton"><h1>x</h1></button></div>
+            <form action="input">
+                <br>
+                <div class="formGroup">
+                    <label for="username"></label>
+                    <input type="text" id="modalUsernameInput" class="save-local modalInputField" placeholder="Input your username">
+                </div>
+                <br>
+                <br>
+                <div class="formGroup">
+                    <label for="userBio"></label>
+                    <input type="text" id="modalBioInput" class="save-local modalInputField" placeholder="Input a bio (max 50 char)" maxlength="50">
+                </div>
+                <br>
+                <br>
+                <h3>Make sure to upload a profile picture!</h3>
+                <h5>Only jpg and png file types width 500x500 dimentions under 5mb supported.</h5>
+                <div class="formGroup">
+                    <label class="customFileUpload">
+                    <input type="file" id="modalFileInput" accept="image/png, image/jpg">
+                    </label>
+                </div>
+                <br>
+                <div id="statusMessage"></div>
+                <img id="savedImagePreview">
+                <br>
+                <br>
+                <button type="submit"><h2>Submit changes</h2></button>
+            </form>
+        </dialog>
+    </main>
+</body>
+<script type="module" src="../jsFiles/navbar.js"></script>
+<script type="module" src="../jsFiles/userPage.js"></script>
+</html>
