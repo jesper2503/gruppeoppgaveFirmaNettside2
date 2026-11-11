@@ -1,6 +1,6 @@
 // Genererer brukeren sin titlecard i mainpage
 
-import { userInfo } from "./userInfo.js";
+import { userInfo } from "/jsFiles/userInfo.js";
 
 const mainDiv = document.querySelector("#mainDiv");
 const mainDivHead = document.querySelector("#mainDivHead");
