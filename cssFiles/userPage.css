@@ -1,0 +1,85 @@
+header {
+    display: flex;
+    align-items: center;
+    background-color: cyan;
+    gap: 10px;
+    padding-left: 10px;
+}
+
+header button {
+    background: none;
+    border: none;
+}
+
+button :active {
+    scale: 0.95;
+    transform-origin: center;
+}
+
+.modalInputField {
+    min-height: 40px;
+    min-width: 400px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+#modalFileInput {
+    font-size: large;
+}
+
+#hideModalButton {
+    font-weight: bold; 
+    color: red;
+    background: none;
+    border: none;
+}
+
+#hideModalButton :hover {
+    scale: 1.2;
+    transform-origin: center;
+}
+
+#settingsDialog {
+    padding: 20px;
+    background-color: #FFF5E4;
+}
+
+header > :last-child {
+    margin-left: auto;
+}
+
+#profilePicturePlacement img {
+    height: 100px;
+    width: 100px;
+}
+
+.userStats {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.userStatGap {
+    display: flex;
+    gap: 5px;
+}
+
+
+
+
+
+#profilePicturePlacement {
+    background-color: red;
+}
+
+#infoSection {
+    background-color: green;
+}
+
+.userStats {
+    background-color: magenta;
+}
+
+.userBio {
+    background-color: orange;
+}

@@ -2,14 +2,23 @@ main {
     background-color: #FFF5E4;
     width: 65%; 
     border-radius: 25px;
+    margin: 10px;
+    border: solid 5px;
+    border-color: #f4ead8;
+    box-shadow: 3px 6px 10px grey;
+    padding-bottom: 15px;
 }
 
 body{
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 100%;
     margin: 0;
-    padding-bottom: 120px;
+    padding-bottom: 130px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(45, 45, 45);
+    background-image: url(../assets/backgroundImage.jpg);
 }
 
 @media(max-width: 600px) {
@@ -18,24 +27,28 @@ body{
     }
 }
 
-
-
 nav {
     background-color: #FFA725;
     display: flex;
     position: fixed;
     justify-content: space-around;
     border-radius: 25px;
-    bottom: 10px;
-    width: 65%;
+    bottom: 15px;
+    width: 30%;
     height: 100px;
     align-items: center;
-    
+    border: solid 5px;
+    border-color: white;
 }
 
-nav a{
+nav a {
     display: flex;
     margin: 5px;
     padding: 5px;
+}
+
+nav img {
+    width: 80px;
+    height: 70px;
 }
 
