@@ -34,13 +34,13 @@
                 <br>
                 <div class="formGroup">
                     <label for="username"></label>
-                    <input type="text" id="modalUsernameInput" class="save-local modalInputField" placeholder="Input your username">
+                    <input type="text" id="modalUsernameInput" class="save-local modalInputField" placeholder="Input your username (max 15 char)" maxlength="15">
                 </div>
                 <br>
                 <br>
                 <div class="formGroup">
                     <label for="userBio"></label>
-                    <input type="text" id="modalBioInput" class="save-local modalInputField" placeholder="Input a bio (max 50 char)" maxlength="50">
+                    <input type="text" id="modalBioInput" class="save-local modalInputField" placeholder="Input a bio (max 100 char)" maxlength="100">
                 </div>
                 <br>
                 <br>
@@ -59,6 +59,9 @@
                 <button type="submit"><h2>Submit changes</h2></button>
             </form>
         </dialog>
+        <div id="classPostSection">
+            <div class="postBox"></div>
+        </div>
     </main>
 </body>
 <script type="module" src="/jsFiles/navbar.js"></script>
