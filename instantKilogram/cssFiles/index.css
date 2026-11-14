@@ -21,14 +21,9 @@ body{
     background-image: url(/assets/backgroundImage.jpg);
 }
 
-@media(max-width: 600px) {
-    main {
-        background-color: red;
-    }
-}
 
 nav {
-    background-color: #FFA725;
+    background-color:lightpink;
     display: flex;
     position: fixed;
     justify-content: space-around;
