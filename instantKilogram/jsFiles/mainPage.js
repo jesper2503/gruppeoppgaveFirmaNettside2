@@ -6,14 +6,26 @@ const mainDiv = document.querySelector("#mainDiv");
 const mainDivHead = document.querySelector("#mainDivHead");
 
 const profilePic = document.createElement("img");
-profilePic.src = userInfo.profilePicture;
-profilePic.alt = userInfo.name;
+profilePic.alt = "Profile picture";
+if (localStorage.getItem("savedProfilePic") == null) {
+    profilePic.src = userInfo.profilePicture;
+} else {
+    profilePic.src = localStorage.getItem("savedProfilePic");
+};
 
 const name = document.createElement("h3");
-name.textContent = userInfo.name;
+if (localStorage.getItem("savedUsername") == null) {
+    name.textContent = userInfo.name;
+} else {
+    name.textContent = localStorage.getItem("savedUsername");
+};
 
 const bio = document.createElement("p");
-bio.textContent = userInfo.bio;
+if (localStorage.getItem("savedBio") == null) {
+    bio.textContent = userInfo.bio;
+} else {
+    bio.textContent = localStorage.getItem("savedBio");
+}
 
 mainDivHead.append(profilePic);
 mainDiv.append(name);
