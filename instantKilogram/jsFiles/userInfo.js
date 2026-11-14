@@ -1,6 +1,7 @@
 export const userInfo = {
     name: "No name",
     userPosts: "0",
+    userLikes: "0",
     userFollowers: "0",
     userFollowing: "0",
     bio: "No bio",

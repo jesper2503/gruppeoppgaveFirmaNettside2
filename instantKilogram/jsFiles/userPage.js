@@ -28,6 +28,9 @@ function displayUserInfo() {
     document.querySelector(".userFollowing p").textContent =
         "Following: " + userInfo.userFollowing;
 
+    document.querySelector(".userLikes p").textContent = 
+        "Likes:" + userInfo.userLikes;
+
     // Bio
     const userBioPlacement = document.querySelector(".userBio");
     const userBioInfo = document.createElement("p");
