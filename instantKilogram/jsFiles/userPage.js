@@ -6,6 +6,7 @@ function displayUserInfo() {
     // Profile picture
     const profilePicturePlacement = document.querySelector("#profilePicturePlacement");
     const profilePicImg = document.createElement("img");
+    profilePicImg.setAttribute("style", "border-radius: 50%;");
 
     profilePicImg.src = localStorage.getItem("savedProfilePic") || userInfo.profilePicture;
     profilePicturePlacement.replaceChildren(profilePicImg);
