@@ -4,222 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retningslinjer</title>
-
-    <style>
-        /* Grunnstil */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #FFF5E4;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Grønt toppfelt */
-        .upper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            width: 100%;
-            min-height: 85vh;
-            padding-top: 100px;
-            padding-bottom: 100px;
-            margin-bottom: 20px;
-            background-color: #C1D8C3;
-            border-radius: 0%;
-            text-align: center;
-        }
-
-        .header {
-            font-family: Arial, sans-serif;
-            font-size: 40px;
-            font-weight: normal;
-            color: black;
-            text-transform: none;
-            text-align: center;
-        }
-
-        .welcome {
-            max-width: 700px;
-            padding-inline: 20px;
-            margin-bottom: 20px;
-            font-size: 20px;
-            font-weight: normal;
-            line-height: 1.6;
-            color: black;
-            text-align: center;
-        }
-
-        /* Menyrad og logo */
-        .guidelines-nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .nav-logo {
-            width: 90px;
-            height: auto;
-        }
-
-        .menu-button {
-            padding: 8px;
-            background: transparent;
-            border: none;
-            font-size: 50px;
-            color: black;
-            cursor: pointer;
-        }
-
-        /* Menyen som åpnes med hamburgerknappen */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 20px;
-            z-index: 1;
-            padding: 15px 25px;
-            background-color: #FFF5E4;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            text-align: left;
-        }
-
-        /* Hovedinnhold og retningslinjer */
-        .guidelines-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .guidelines-content h2 {
-            margin-bottom: 24px;
-            font-size: 36px;
-            font-weight: normal;
-        }
-
-        .rules {
-            list-style: none;
-            padding-left: 0;
-            font-size: 18px;
-            color: black;
-            text-align: left;
-        }
-
-        .rules li {
-            padding: 20px 0;
-            margin-bottom: 0;
-            border-bottom: 1px solid #C1D8C3;
-            line-height: 1.6;
-        }
-
-        .rules strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 20px;
-        }
-
-        .bottom {
-            margin-top: 32px;
-            margin-bottom: 0;
-            padding-left: 0;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #4B554B;
-            text-align: center;
-        }
-
-        /* Footer */
-        .site-footer {
-            padding: 40px 20px;
-            background-color: #C1D8C3;
-            text-align: center;
-        }
-
-        .site-footer h2 {
-            margin: 0 0 16px;
-            font-size: 24px;
-        }
-
-        .site-footer p {
-            margin: 0;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        /* Lenker og ikoner i footeren */
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: #FFF5E4;
-            color: #263D2B;
-        }
-
-        .footer-links svg {
-            width: 26px;
-            height: 26px;
-        }
-
-        .footer-links a:first-child svg {
-            fill: currentColor;
-        }
-
-        .footer-links a:hover {
-            background-color: #FFFFFF;
-        }
-
-        .footer-links a:focus-visible {
-            outline: 2px solid #263D2B;
-            outline-offset: 4px;
-        }
-
-        /* Tilpasninger for små skjermer */
-        @media (max-width: 600px) {
-            .header {
-                font-size: 30px;
-            }
-
-            .welcome {
-                padding-inline: 10px;
-                font-size: 16px;
-            }
-
-            .guidelines-content {
-                padding: 30px;
-            }
-
-            .guidelines-content h2 {
-                font-size: 28px;
-            }
-
-            .rules {
-                font-size: 16px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/cssFiles/guidelines.css">
 </head>
 
 <body>
@@ -251,45 +36,51 @@
             </div>
         </div>
 
-        <h1 class="header">Retningslinjer for bruk av nettsiden</h1>
+        <h1 class="header">Guidelines for usage of our website</h1>
 
         <p class="welcome">
-            Velkommen til vår nettside! Vi setter pris på at du tar deg tid
-            til å lese våre retningslinjer. Vennligst følg disse
-            retningslinjene for å sikre en positiv opplevelse for alle brukere.
+            Welcome to our website! 
+            We would appreciate it if you would take the time to read through 
+            our guidelines and follow them to ensure a positive user experience. 
+
         </p>
     </div>
 
     <!-- Retningslinjer -->
     <main class="guidelines-content">
-        <h2>Hva er retningslinjene våre?</h2>
+        <h2>Our guidelines</h2>
 
         <ul class="rules">
             <li>
-                <strong>Respekt</strong>
-                Ingen mobbing, trakassering, trusler eller hatefulle kommentarer.
+                <strong>Respect</strong>
+                We do not tolerate any form of bullying, harassment or hateful comments.
             </li>
 
             <li>
-                <strong>Personvern</strong>
-                Ikke publiser andres private opplysninger eller bilder uten
-                tillatelse. Unngå å dele sensitive opplysninger om deg selv.
+                <strong>Privacy</strong>
+                We strongly encourage you to not share any personal or sensitive 
+                information about you or others. Publishing pictures of others without 
+                their promotion is also not permitted. 
+
             </li>
 
             <li>
-                <strong>Rettigheter</strong>
-                Del bare bilder og annet innhold du har laget selv,
-                eller har tillatelse til å bruke.
+                <strong>Content usage guidelines</strong>
+                We strongly encourage you to not share any personal or sensitive information 
+                about you or others. 
+                Publishing pictures of others without their promotion is also not permitted.
             </li>
 
             <li>
-                <strong>Rapportering</strong>
-                Rapporter eventuelle problemer eller misbruk til administratorene.
+                <strong>Any issues to report?</strong>
+                Please report any issues you might encounter while 
+                using our website to our administrators, 
+                <a href="/htmlFiles/supportPage.html">here.</a>
             </li>
         </ul>
 
         <p class="bottom">
-            Takk for at du bidrar til et trygt og hyggelig fellesskap på InstaKg!
+            Thank you for contributing to a safe and pleasant experience for our community here on InstatKg!
         </p>
     </main>
 

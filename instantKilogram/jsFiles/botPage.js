@@ -13,7 +13,56 @@ const bot = BOT_PROFILES[botId];
 if (!bot) {
     throw new Error(`No bot profile was found for ID: ${botId}`);
 }
-// Open the shared DM inbox with the correct bot selected.
+
+
+/* =========================================
+   BOT LOOKUP HELPERS
+========================================= */
+
+// Find a bot by its configured ID.
+function findBotById(id) {
+    if (!id) {
+        return null;
+    }
+
+    return BOT_PROFILES[id] || null;
+}
+
+
+// Find a bot by username, ignoring capitalization and extra spaces.
+function findBotByUsername(username) {
+    const normalizedUsername = String(username || "")
+        .trim()
+        .toLowerCase();
+
+    if (!normalizedUsername) {
+        return null;
+    }
+
+    return Object.values(BOT_PROFILES).find(profile =>
+        String(profile.name || "").trim().toLowerCase() === normalizedUsername
+    ) || null;
+}
+
+
+// Resolve the real author of a bot comment.
+// Username is checked first because older buggy data may contain the wrong botId.
+function findCommentAuthorBot(comment) {
+    if (!comment || comment.authorType !== "bot") {
+        return null;
+    }
+
+    return findBotByUsername(comment.username)
+        || findBotById(comment.botId)
+        || null;
+}
+
+
+/* =========================================
+   DM BUTTON
+   Open the shared inbox with this bot selected.
+========================================= */
+
 const sendDmButton = document.querySelector("#sendDmButton");
 
 if (sendDmButton) {
@@ -80,28 +129,73 @@ if (!Array.isArray(likedPosts)) {
 }
 
 
-// Add the starter comments only when this bot has no saved comment history.
+// Load the saved comments for this bot.
 let comments = readJSON(commentsStorageKey, null);
 
-// An older test version may have saved an empty array. Treat that as an
-// uninitialized comment history so the starter conversations appear.
+// Add starter comments only when this bot has no saved comment history.
+// Importantly, each bot comment keeps the identity of its actual author.
 if (!Array.isArray(comments) || comments.length === 0) {
     const currentTime = Date.now();
 
-    comments = bot.initialComments.map((comment, index) => ({
-        ...comment,
-        // Older starter comments did not have a botId. Add it when the
-        // author is a bot so the correct profile picture is always used.
-        ...(comment.authorType === "bot" ? {
-            botId: comment.botId || bot.id,
-            profilePicture: bot.profilePicture
-        } : {}),
-        id: `${bot.id}-starter-${index + 1}`,
-        createdAt: new Date(
-            currentTime - (bot.initialComments.length - index) * 60 * 60 * 1000
-        ).toISOString()
-    }));
+    comments = bot.initialComments.map((comment, index) => {
+        const commentAuthor = findCommentAuthorBot(comment);
 
+        return {
+            ...comment,
+
+            ...(commentAuthor ? {
+                botId: commentAuthor.id,
+                profilePicture: commentAuthor.profilePicture
+            } : {}),
+
+            id: `${bot.id}-starter-${index + 1}`,
+            createdAt: new Date(
+                currentTime - (bot.initialComments.length - index) * 60 * 60 * 1000
+            ).toISOString()
+        };
+    });
+
+    saveJSON(commentsStorageKey, comments);
+}
+
+
+/* =========================================
+   REPAIR OLD SAVED BOT COMMENT IDENTITIES
+
+   An earlier version could accidentally save every bot comment
+   with the profile picture and botId of the page currently open.
+   This repairs those saved records using the comment's username.
+========================================= */
+
+let commentsWereRepaired = false;
+
+comments = comments.map(comment => {
+    if (comment.authorType !== "bot") {
+        return comment;
+    }
+
+    const commentAuthor = findCommentAuthorBot(comment);
+
+    if (!commentAuthor) {
+        // Keep the existing picture if the author is not registered in BOT_PROFILES.
+        return comment;
+    }
+
+    if (
+        comment.botId !== commentAuthor.id ||
+        comment.profilePicture !== commentAuthor.profilePicture
+    ) {
+        commentsWereRepaired = true;
+    }
+
+    return {
+        ...comment,
+        botId: commentAuthor.id,
+        profilePicture: commentAuthor.profilePicture
+    };
+});
+
+if (commentsWereRepaired) {
     saveJSON(commentsStorageKey, comments);
 }
 
@@ -361,13 +455,11 @@ function createCommentElement(comment) {
 
     const avatar = makeElement("img", "commentAvatar");
 
-    // Use the profile picture belonging to the bot that wrote this comment.
-    // This also supports comments from the other bots added in the future.
-    const commentBot = comment.botId
-        ? BOT_PROFILES[comment.botId]
-        : (comment.authorType === "bot" ? bot : null);
+    // Use the actual author of the comment, not the bot page currently open.
+    // Saved botId values are repaired above, and the stored picture is a fallback.
+    const commentAuthor = findCommentAuthorBot(comment);
 
-    avatar.src = commentBot?.profilePicture
+    avatar.src = commentAuthor?.profilePicture
         || comment.profilePicture
         || "/assets/profile_icon.png";
     avatar.alt = `${comment.username}'s profile picture`;
@@ -519,8 +611,8 @@ function chooseReplyingBots() {
 }
 
 
-function getRandomReply(botId) {
-    const replyPool = BOT_REPLY_LIBRARY[botId]
+function getRandomReply(replyingBotId) {
+    const replyPool = BOT_REPLY_LIBRARY[replyingBotId]
         || BOT_REPLY_LIBRARY.default
         || [];
 
@@ -658,9 +750,11 @@ function openFullSizeImage(postId) {
     imageDialog.showModal();
 }
 
+
 closeImageDialog.addEventListener("click", () => {
     imageDialog.close();
 });
+
 
 // Clicking the dark area outside the image closes the viewer.
 imageDialog.addEventListener("click", event => {

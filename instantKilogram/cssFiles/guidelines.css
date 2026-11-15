@@ -1,0 +1,224 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF5E4;
+    padding: 0;
+    margin: 0;
+}
+
+/* Grønt toppfelt */
+.upper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 85vh;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-bottom: 20px;
+    background-color: #94c5b2;
+    border-radius: 0%;
+    text-align: center;
+}
+
+.header {
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    font-weight: normal;
+    color: black;
+    text-transform: none;
+    text-align: center;
+}
+
+.welcome {
+    max-width: 700px;
+    padding-inline: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.6;
+    color: black;
+    text-align: center;
+}
+
+/* Menyrad og logo */
+.guidelines-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-logo {
+    width: 90px;
+    height: auto;
+}
+
+.menu-button {
+    padding: 8px;
+    background: transparent;
+    border: none;
+    font-size: 50px;
+    color: black;
+    cursor: pointer;
+}
+
+/* Menyen som åpnes med hamburgerknappen */
+.dropdown-menu {
+    position: absolute;
+    top: 75%;
+    left: 20px;
+    z-index: 1;
+    padding: 15px 25px;
+    background-color: #FFF5E4;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dropdown-menu[hidden]{
+    display: none;
+}
+
+.dropdown-menu a{
+    color: black;
+    text-decoration: none;
+}
+
+/* Hovedinnhold og retningslinjer */
+.guidelines-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.guidelines-content h2 {
+    margin-bottom: 24px;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.rules {
+    list-style: none;
+    padding-left: 0;
+    font-size: 18px;
+    color: black;
+    text-align: left;
+}
+
+.rules li {
+    padding: 20px 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #C1D8C3;
+    line-height: 1.6;
+}
+
+.rules strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 20px;
+}
+
+.bottom {
+    margin-top: 32px;
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4B554B;
+    text-align: center;
+}
+
+/* Footer */
+.site-footer {
+    padding: 40px 20px;
+    background-color: #C1D8C3;
+    text-align: center;
+}
+
+.site-footer h2 {
+    margin: 0 0 16px;
+    font-size: 24px;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Lenker og ikoner i footeren */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #FFF5E4;
+    color: #263D2B;
+}
+
+.footer-links svg {
+    width: 26px;
+    height: 26px;
+}
+
+.footer-links a:first-child svg {
+    fill: currentColor;
+}
+
+.footer-links a:hover {
+    background-color: #FFFFFF;
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid #263D2B;
+    outline-offset: 4px;
+}
+
+/* Tilpasninger for små skjermer */
+@media (max-width: 600px) {
+    .header {
+        font-size: 30px;
+    }
+
+    .welcome {
+        padding-inline: 10px;
+        font-size: 16px;
+    }
+
+    .guidelines-content {
+        padding: 30px;
+    }
+
+    .guidelines-content h2 {
+        font-size: 28px;
+    }
+
+    .rules {
+        font-size: 16px;
+    }
+}
