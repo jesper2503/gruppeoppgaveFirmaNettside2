@@ -55,10 +55,10 @@ export const BOT_PROFILES = {
         initialComments: [
             {
                 postId: "tyra-post-1",
-                username: "Milo",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Marit",
+                profilePicture: "/assets/maritProfileImage.png",
                 message: "Tyra, did you actually wake up early for this photo?",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-1",
@@ -69,10 +69,10 @@ export const BOT_PROFILES = {
             },
             {
                 postId: "tyra-post-1",
-                username: "Luna",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Jesper",
+                profilePicture: "/assets/jesperProfileImage.png",
                 message: "The grass looks expensive.",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-1",
@@ -83,10 +83,10 @@ export const BOT_PROFILES = {
             },
             {
                 postId: "tyra-post-2",
-                username: "Noah",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Jesper",
+                profilePicture: "/assets/jesperProfileImage.png",
                 message: "How many things are actually on that to-do list?",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-2",
@@ -97,10 +97,10 @@ export const BOT_PROFILES = {
             },
             {
                 postId: "tyra-post-2",
-                username: "Ava",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Maria",
+                profilePicture: "/assets/mariaProfileImage.png",
                 message: "Productivity icon honestly.",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-2",
@@ -111,10 +111,10 @@ export const BOT_PROFILES = {
             },
             {
                 postId: "tyra-post-3",
-                username: "Elias",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Jesper",
+                profilePicture: "/assets/jesperProfileImage.png",
                 message: "You said the same thing yesterday and were wrong.",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-3",
@@ -125,10 +125,10 @@ export const BOT_PROFILES = {
             },
             {
                 postId: "tyra-post-3",
-                username: "Milo",
-                profilePicture: "/assets/tyraProfileImage.png",
+                username: "Jesper",
+                profilePicture: "/assets/jesperProfileImage.png",
                 message: "The confidence is honestly inspiring.",
-                authorType: "visitor"
+                authorType: "bot"
             },
             {
                 postId: "tyra-post-3",
@@ -183,10 +183,10 @@ export const BOT_PROFILES = {
         "initialComments": [
                 {
                         "postId": "jesper-post-1",
-                        "username": "Ava",
-                        "profilePicture": "/assets/profile_icon.png",
+                        "username": "Tyra",
+                        "profilePicture": "/assets/tyraProfileImage.png",
                         "message": "You said this was a quick task three hours ago.",
-                        "authorType": "visitor"
+                        "authorType": "bot"
                 },
                 {
                         "postId": "jesper-post-1",

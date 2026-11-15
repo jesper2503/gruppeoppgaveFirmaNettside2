@@ -1,6 +1,130 @@
 
 import { userInfo } from "/jsFiles/userInfo.js";
 
+// =========================================
+// AUTOMATIC USER FOLLOWER GROWTH
+// =========================================
+
+const FOLLOWER_STORAGE_KEY = "savedUserFollowers";
+const FOLLOWER_TIME_KEY = "savedUserFollowersLastUpdate";
+
+const FOLLOWER_INTERVAL = 5 * 60 * 1000; // 2 minute
+
+
+// Calculate and update the follower count
+function getUserFollowerCount() {
+
+    const savedFollowers = localStorage.getItem(FOLLOWER_STORAGE_KEY);
+
+    // Initialize the follower count on first visit
+    let followers;
+
+    if (savedFollowers === null) {
+
+        followers = Number(userInfo.userFollowers) || 0;
+
+        localStorage.setItem(FOLLOWER_STORAGE_KEY, followers);
+        localStorage.setItem(FOLLOWER_TIME_KEY, Date.now());
+
+        return followers;
+    }
+
+    followers = Number(savedFollowers);
+
+    if (!Number.isFinite(followers) || followers < 0) {
+        followers = 0;
+    }
+
+    // Get the last update timestamp
+    let lastUpdate = Number(localStorage.getItem(FOLLOWER_TIME_KEY));
+
+    if (!Number.isFinite(lastUpdate) || lastUpdate <= 0) {
+
+        localStorage.setItem(FOLLOWER_TIME_KEY, Date.now());
+
+        return followers;
+    }
+
+    // Calculate how many 10-minute intervals have passed
+    const elapsedIntervals = Math.floor(
+        (Date.now() - lastUpdate) / FOLLOWER_INTERVAL
+    );
+
+    // Increase followers for every completed interval
+    if (elapsedIntervals > 0) {
+
+        for (let i = 0; i < elapsedIntervals; i++) {
+
+            const randomFollowers = Math.floor(Math.random() * 3) + 1;
+
+            followers += randomFollowers;
+
+        }
+
+        // Save the new follower count
+        localStorage.setItem(FOLLOWER_STORAGE_KEY, followers);
+
+        // Advance the timestamp without losing the timer's schedule
+        localStorage.setItem(
+            FOLLOWER_TIME_KEY,
+            lastUpdate + elapsedIntervals * FOLLOWER_INTERVAL
+        );
+
+    }
+
+    return followers;
+}
+
+
+// Schedule the next automatic update
+function scheduleFollowerGrowth() {
+
+    const lastUpdate = Number(localStorage.getItem(FOLLOWER_TIME_KEY));
+
+    const elapsedTime = Date.now() - lastUpdate;
+
+    const timeUntilNextUpdate = Math.max(
+        1000,
+        FOLLOWER_INTERVAL - elapsedTime
+    );
+
+    setTimeout(function() {
+
+        const followers = getUserFollowerCount();
+
+        const followerElement = document.querySelector(".userFollowers p");
+
+        if (followerElement) {
+            followerElement.textContent = "Followers: " + followers;
+        }
+
+        // Schedule the next update
+        scheduleFollowerGrowth();
+
+    }, timeUntilNextUpdate);
+
+}
+
+// Count how many bots the user follows
+function getFollowingCount() {
+
+    const botIds = [
+        "tyra",
+        "jesper",
+        "marit",
+        "maria",
+        "kristina"
+    ];
+
+    const followingCount = botIds.filter(function(botId) {
+
+        return localStorage.getItem(`bot_${botId}_followed`) === "true";
+
+    }).length;
+
+    return followingCount;
+}   
+
 // Display user information
 function displayUserInfo() {
     // Profile picture
@@ -19,14 +143,25 @@ function displayUserInfo() {
     userNamePlacement.replaceChildren(userNameInfo);
 
     // User stats
+    const postStorageKeys = [
+    "userPagePostImage1",
+    "userPagePostImage2",
+    "userPagePostImage3"
+    ];
+
+    const postCount = postStorageKeys.filter(function(key) {
+        return localStorage.getItem(key) !== null;
+    }).length;
+
+    // Display post count
     document.querySelector(".userPosts p").textContent =
-        "Posts: " + userInfo.userPosts;
+        "Posts: " + postCount;
 
     document.querySelector(".userFollowers p").textContent =
-        "Followers: " + userInfo.userFollowers;
+    "Followers: " + getUserFollowerCount();
 
     document.querySelector(".userFollowing p").textContent =
-        "Following: " + userInfo.userFollowing;
+        "Following: " + getFollowingCount();
 
     // Bio
     const userBioPlacement = document.querySelector(".userBio");
@@ -39,6 +174,9 @@ function displayUserInfo() {
 
 // Initial display
 displayUserInfo();
+
+// Start automatic follower growth
+scheduleFollowerGrowth();
 
 
 // Modal buttons
