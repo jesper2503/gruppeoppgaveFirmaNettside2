@@ -12,7 +12,7 @@ function makeNavBar() {
 
     //2nd nav link
     const navLink2 = document.createElement("a");
-    navLink2.href = "";
+    navLink2.href = "/htmlFiles/directMessages.html";
     const navImage2 = document.createElement("img");
     navImage2.src = "/assets/post_icon.png";
     navLink2.append(navImage2);

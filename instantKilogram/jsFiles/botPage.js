@@ -13,6 +13,13 @@ const bot = BOT_PROFILES[botId];
 if (!bot) {
     throw new Error(`No bot profile was found for ID: ${botId}`);
 }
+// Open the shared DM inbox with the correct bot selected.
+const sendDmButton = document.querySelector("#sendDmButton");
+
+if (sendDmButton) {
+    sendDmButton.href =
+        `/htmlFiles/directMessages.html?bot=${encodeURIComponent(bot.id)}`;
+}
 
 
 /* =========================================
