@@ -10,7 +10,7 @@ export const BOT_PROFILES = {
     tyra: {
         id: "tyra",
         name: "Tyra",
-        bio: "Professional overthinker. Amateur main character. ☀️",
+        bio: "I love bouldering with my fav bouldering teacher Jesper!",
         profilePicture: "/assets/tyraProfileImage.png",
 
         // These are the starting counts. Following Tyra adds one follower.
@@ -144,7 +144,7 @@ export const BOT_PROFILES = {
     jesper: {
         "id": "jesper",
         "name": "Jesper",
-        "bio": "One more task, one more side quest, one more coffee. ☕",
+        "bio": "Live laugh breathe path of exile 2! (11 december!!!!)",
         "profilePicture": "/assets/jesperProfileImage.png",
         "followers": 9,
         "following": 7,
@@ -234,7 +234,7 @@ export const BOT_PROFILES = {
     marit: {
         "id": "marit",
         "name": "Marit",
-        "bio": "Observant, mildly sarcastic, usually right eventually.",
+        "bio": "I might like you, but you are not as important as my tomadachi!",
         "profilePicture": "/assets/maritProfileImage.png",
         "followers": 12,
         "following": 8,
@@ -416,7 +416,7 @@ export const BOT_PROFILES = {
     kristina: {
         "id": "kristina",
         "name": "Kristina",
-        "bio": "A colour-coded plan and absolutely no guarantee I'll follow it.",
+        "bio": "You might not find me at school but you'll find me Downtown!",
         "profilePicture": "/assets/kristinaProfileImage.png",
         "followers": 8,
         "following": 10,
