@@ -834,14 +834,23 @@
     }
 }
 
-/* FIX: BOT POST INTERACTION BUTTONS */
 
+/* =========================================
+   COMMENT REPLY CONTEXT
+========================================= */
+
+.commentReplyContext {
+    flex-basis: 100%;
+    color: #8a7357;
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* Keep bot action buttons clear of the generic user-page post button rules. */
 .botPost .postInteractionRow .postActionButton {
     width: auto;
     height: auto;
-
     flex: 0 0 auto;
-
     min-height: 36px;
     padding: 7px 10px;
 

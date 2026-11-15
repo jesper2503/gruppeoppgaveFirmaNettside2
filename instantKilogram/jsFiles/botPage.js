@@ -1,4 +1,5 @@
 import { BOT_PROFILES } from "/jsFiles/botProfiles.js";
+import { BOT_REPLY_LIBRARY } from "/jsFiles/botReplies.js";
 import { userInfo } from "/jsFiles/userInfo.js";
 
 
@@ -82,6 +83,12 @@ if (!Array.isArray(comments) || comments.length === 0) {
 
     comments = bot.initialComments.map((comment, index) => ({
         ...comment,
+        // Older starter comments did not have a botId. Add it when the
+        // author is a bot so the correct profile picture is always used.
+        ...(comment.authorType === "bot" ? {
+            botId: comment.botId || bot.id,
+            profilePicture: bot.profilePicture
+        } : {}),
         id: `${bot.id}-starter-${index + 1}`,
         createdAt: new Date(
             currentTime - (bot.initialComments.length - index) * 60 * 60 * 1000
@@ -195,7 +202,7 @@ function createBotPost(post) {
     postCard.dataset.postId = post.id;
 
     // The post image is a button so it can be opened in the full-size viewer.
-    const visual = makeElement("button", "botPostVisual postImageButton");
+    const visual = makeElement("button", `botPostVisual postImageButton ${post.visualTheme || ""}`);
     visual.type = "button";
     visual.dataset.action = "view-image";
     visual.dataset.postId = post.id;
@@ -347,14 +354,15 @@ function createCommentElement(comment) {
 
     const avatar = makeElement("img", "commentAvatar");
 
-    // Always use the current bot profile picture for bot comments.
-    if (comment.authorType === "bot") {
-        avatar.src = bot.profilePicture;
-    } else {
-        // Use the saved profile picture for everyone else.
-        avatar.src = comment.profilePicture || "/assets/profile_icon.png";
-    }
+    // Use the profile picture belonging to the bot that wrote this comment.
+    // This also supports comments from the other bots added in the future.
+    const commentBot = comment.botId
+        ? BOT_PROFILES[comment.botId]
+        : (comment.authorType === "bot" ? bot : null);
 
+    avatar.src = commentBot?.profilePicture
+        || comment.profilePicture
+        || "/assets/profile_icon.png";
     avatar.alt = `${comment.username}'s profile picture`;
 
     const bubble = makeElement("div", "commentBubble");
@@ -370,6 +378,16 @@ function createCommentElement(comment) {
     meta.append(
         makeElement("span", "commentTimestamp", formatCommentTime(comment.createdAt))
     );
+
+    // Replies are saved with the ID of the comment they respond to.
+    // Show that connection in the comment log.
+    if (comment.replyTo) {
+        const parentComment = comments.find(item => item.id === comment.replyTo);
+        const parentName = parentComment?.username || "a comment";
+        meta.append(
+            makeElement("span", "commentReplyContext", `↳ replying to @${parentName}`)
+        );
+    }
 
     const message = makeElement("p", "commentMessage", comment.message);
 
@@ -458,6 +476,105 @@ postSection.addEventListener("click", event => {
    ADD A USER COMMENT
 ========================================= */
 
+function makeCommentId(prefix) {
+    return `${bot.id}-${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+
+function randomInteger(minimum, maximum) {
+    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+}
+
+
+function shuffleArray(items) {
+    const shuffled = [...items];
+
+    for (let index = shuffled.length - 1; index > 0; index--) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+
+    return shuffled;
+}
+
+
+function chooseReplyingBots() {
+    // The bot whose page is open always replies. Randomly select 0-2
+    // additional bots from the rest of BOT_PROFILES.
+    const otherBots = Object.values(BOT_PROFILES)
+        .filter(candidate => candidate.id !== bot.id);
+
+    const requestedOtherBotCount = randomInteger(0, 2);
+    const selectedOtherBots = shuffleArray(otherBots)
+        .slice(0, requestedOtherBotCount);
+
+    return [bot, ...selectedOtherBots];
+}
+
+
+function getRandomReply(botId) {
+    const replyPool = BOT_REPLY_LIBRARY[botId]
+        || BOT_REPLY_LIBRARY.default
+        || [];
+
+    if (replyPool.length === 0) {
+        return "I have thoughts about this, but I'm still organising them.";
+    }
+
+    return replyPool[Math.floor(Math.random() * replyPool.length)];
+}
+
+
+function wait(milliseconds) {
+    return new Promise(resolve => window.setTimeout(resolve, milliseconds));
+}
+
+
+async function sendAutomaticBotReplies(userComment) {
+    const replyingBots = chooseReplyingBots();
+
+    for (let index = 0; index < replyingBots.length; index++) {
+        const replyingBot = replyingBots[index];
+
+        // Small staggered delays make each response feel like a new comment.
+        if (commentDialog.open && activePostId === userComment.postId) {
+            commentStatus.textContent = `${replyingBot.name} is typing...`;
+        }
+
+        await wait(randomInteger(900, 1900));
+
+        const botReply = {
+            id: makeCommentId(`${replyingBot.id}-reply`),
+            postId: userComment.postId,
+            username: replyingBot.name,
+            profilePicture: replyingBot.profilePicture,
+            message: getRandomReply(replyingBot.id),
+            authorType: "bot",
+            botId: replyingBot.id,
+            replyTo: userComment.id,
+            createdAt: new Date().toISOString()
+        };
+
+        comments.push(botReply);
+        saveJSON(commentsStorageKey, comments);
+        updateCommentButton(userComment.postId);
+
+        // If the user has this post's comment window open, show the reply
+        // as soon as it arrives. Replies are still saved if the dialog closes.
+        if (commentDialog.open && activePostId === userComment.postId) {
+            displayComments(userComment.postId);
+        }
+    }
+
+    if (commentDialog.open && activePostId === userComment.postId) {
+        const extraBotCount = replyingBots.length - 1;
+        commentStatus.textContent = extraBotCount === 0
+            ? `${bot.name} replied.`
+            : `${bot.name} and ${extraBotCount} other bot${extraBotCount === 1 ? "" : "s"} replied.`;
+    }
+}
+
+
 commentForm.addEventListener("submit", event => {
     event.preventDefault();
 
@@ -474,7 +591,7 @@ commentForm.addEventListener("submit", event => {
         localStorage.getItem("savedProfilePic") || userInfo.profilePicture;
 
     const newComment = {
-        id: `${bot.id}-user-${Date.now()}`,
+        id: makeCommentId("user"),
         postId: activePostId,
         username: currentUsername,
         profilePicture: currentProfilePicture,
@@ -492,8 +609,12 @@ commentForm.addEventListener("submit", event => {
 
     commentInput.value = "";
     commentStatus.textContent = saved
-        ? "Comment posted."
+        ? `${bot.name} is thinking...`
         : "Comment displayed, but the browser could not save it.";
+
+    // The user's comment is saved first. Bot replies are then added one by
+    // one to the same post's comment log, each linked to this comment ID.
+    sendAutomaticBotReplies(newComment);
 });
 
 
