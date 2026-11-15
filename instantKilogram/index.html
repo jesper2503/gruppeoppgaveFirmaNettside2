@@ -1,97 +1,232 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/cssFiles/mainpage.css">
+
+    <title>InstaKG | Home</title>
+
+    <!-- Global styling first -->
     <link rel="stylesheet" href="/cssFiles/index.css">
+
+    <!-- Homepage styling -->
+    <link rel="stylesheet" href="/cssFiles/mainPage.css">
 </head>
-<body>  
+
+<body>
+
     <main>
-        <header><h1 id="headerE1">InstaKg</h1><img src="/assets/mainIconplaceholder.png" alt="Placeholder image" id="headerE2" width="100px" height="100px"></header>
-        <div id="mainWelcome" class="profile">
+
+        <!-- WEBSITE HEADER -->
+        <header class="siteHeader">
+
+            <h1 id="headerE1">InstaKG</h1>
+
+            <img
+                src="/assets/mainIconplaceholder.png"
+                alt="InstaKG logo"
+                id="headerE2"
+            >
+
+        </header>
+
+
+        <!-- WELCOME SECTION -->
+        <section id="mainWelcome" class="profile">
+
             <div id="welcomeLeft">
+
                 <h2>Welcome to InstantKilogram!</h2>
-                <p>Press on any of the options below to interact with the bots!</p>
-                <br>
-                <p>If you are having issues with the page reffer to our support page <a href="">here</a>.</p>
-                <p>For information about us and our guidelines check <a href="">this</a> out!</p>
+
+                <p>
+                    Press on any of the options below to interact with the bots!
+                </p>
+
+                <div class="welcomeLinks">
+
+                    <p>
+                        Having issues with the page?
+                        Refer to our support page
+                        <a href="">here</a>.
+                    </p>
+
+                    <p>
+                        Want to learn more about us and our guidelines?
+                        Check <a href="">this</a> out!
+                    </p>
+
+                </div>
+
             </div>
+
+
             <div id="welcomeRight">
-                <img src="/assets/placeholderIcon.png" alt="" style="height: 200px; width: 200px; box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);">
+
+                <img
+                    src="/assets/placeholderIcon.png"
+                    alt="InstaKG illustration"
+                    class="welcomeImage"
+                >
+
             </div>
-        </div>
-        <br>
-        <h2 style="margin: 10px;">Your user-page:</h2>
-        <a href="/htmlFiles/userPage.html" class="profile-link">
-            <div class="profile">
-                <div id="mainDivHead"></div>
-                <div id="mainDiv" class="profile-info">
+
+        </section>
+
+
+        <!-- USER PROFILE SECTION -->
+        <section class="profileSection">
+
+            <h2 class="sectionTitle">Your user-page</h2>
+
+            <a
+                href="/htmlFiles/userPage.html"
+                class="profile-link"
+            >
+
+                <div class="profile userProfileCard">
+
+                    <div id="mainDivHead"></div>
+
+                    <div id="mainDiv" class="profile-info">
+                        <!-- User information inserted by mainPage.js -->
+                    </div>
 
                 </div>
-            </div>
-        </a>
-<!--Her er profiler-->
-        <br>
-        <h2 style="margin: 10px;">Our bots:</h2>
-        <a href="" class="profile-link">
-            <div class="profile">
-                <img src="/assets/profile_icon.png" alt="Profile-picture">
 
-                <div class="profile-info">
-                    <h3>Profile Name</h3>
-                    <p>Bio blablablabla</p>
+            </a>
+
+        </section>
+
+
+        <!-- BOT PROFILES SECTION -->
+        <section class="profileSection">
+
+            <h2 class="sectionTitle">Our bots</h2>
+
+
+            <a href="/htmlFiles/tyraBot.html" class="profile-link">
+
+                <div class="profile">
+
+                    <img
+                        src="/assets/tyraProfileImage.png"
+                        alt="Tyra's profile picture"
+                    >
+
+                    <div class="profile-info">
+
+                        <h3>Tyra</h3>
+
+                        <p>
+                            Professional overthinker.
+                            Amateur main character. ☀️
+                        </p>
+
+                    </div>
+
                 </div>
-            </div>
-        </a>
 
-        <a href="" class="profile-link">
-            <div class="profile">
-                <img src="/assets/profile_icon.png" alt="Profile-picture">
+            </a>
 
-                <div class="profile-info">
-                    <h3>Profile Name</h3>
-                    <p>Bio blablablabla</p>
+
+            <a href="/htmlFiles/jesperBot.html" class="profile-link">
+
+                <div class="profile">
+
+                    <img
+                        src="/assets/jesperProfileImage.png"
+                        alt="Jesper's profile picture"
+                    >
+
+                    <div class="profile-info">
+
+                        <h3>Jesper</h3>
+
+                        <p>One more task, one more side quest, one more coffee. ☕</p>
+
+                    </div>
+
                 </div>
-            </div>
-        </a>
 
-        <a href="" class="profile-link">
-            <div class="profile">
-                <img src="/assets/profile_icon.png" alt="Profile-picture">
+            </a>
 
-                <div class="profile-info">
-                    <h3>Profile Name</h3>
-                    <p>Bio blablablabla</p>
+
+            <a href="/htmlFiles/maritBot.html" class="profile-link">
+
+                <div class="profile">
+
+                    <img
+                        src="/assets/maritProfileImage.png"
+                        alt="Marit's profile picture"
+                    >
+
+                    <div class="profile-info">
+
+                        <h3>Marit</h3>
+
+                        <p>Observant, mildly sarcastic, usually right eventually.</p>
+
+                    </div>
+
                 </div>
-            </div>
-        </a>
 
-        <a href="" class="profile-link">
-            <div class="profile">
-                <img src="/assets/profile_icon.png" alt="Profile-picture">
+            </a>
 
-                <div class="profile-info">
-                    <h3>Profile Name</h3>
-                    <p>Bio blablablabla</p>
+
+            <a href="/htmlFiles/mariaBot.html" class="profile-link">
+
+                <div class="profile">
+
+                    <img
+                        src="/assets/mariaProfileImage.png"
+                        alt="Maria's profile picture"
+                    >
+
+                    <div class="profile-info">
+
+                        <h3>Maria</h3>
+
+                        <p>Good playlists, good people, and stories that get longer every time.</p>
+
+                    </div>
+
                 </div>
-            </div>
-        </a>
 
-        <a href="" class="profile-link">
-            <div class="profile">
-                <img src="/assets/profile_icon.png" alt="Profile-picture">
+            </a>
 
-                <div class="profile-info">
-                    <h3>Profile Name</h3>
-                    <p>Bio blablablabla</p>
+
+            <a href="/htmlFiles/kristinaBot.html" class="profile-link">
+
+                <div class="profile">
+
+                    <img
+                        src="/assets/kristinaProfileImage.png"
+                        alt="Kristina's profile picture"
+                    >
+
+                    <div class="profile-info">
+
+                        <h3>Kristina</h3>
+
+                        <p>A colour-coded plan and absolutely no guarantee I'll follow it.</p>
+
+                    </div>
+
                 </div>
-            </div>
-        </a>
+
+            </a>
+
+        </section>
+
     </main>
 
-<script type="module" src="/jsFiles/navbar.js"></script>
-<script type="module" src="/jsFiles/mainPage.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="/jsFiles/navbar.js"></script>
+    <script type="module" src="/jsFiles/mainPage.js"></script>
+
 </body>
+
 </html>

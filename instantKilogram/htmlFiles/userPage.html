@@ -1,72 +1,197 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>User Profile | InstaKG</title>
+
     <link rel="stylesheet" href="/cssFiles/index.css">
     <link rel="stylesheet" href="/cssFiles/userPage.css">
 </head>
+
 <body>
+
     <main>
+
+        <!-- USER PROFILE HEADER -->
         <header>
+
             <div id="profilePicturePlacement">
-
+                <!-- Profile picture is inserted by userPage.js -->
             </div>
+
             <div id="infoSection">
+
                 <div class="userName">
-
+                    <!-- Username is inserted by userPage.js -->
                 </div>
+
                 <div class="userStats">
-                    <div class="userPosts userStatGap"><p>Posts:</p></div>
-                    <div class="userFollowers userStatGap"><p>Followers:</p></div>
-                    <div class="userFollowing userStatGap"><p>Following:</p></div>
-                </div>
-                <div class="userBio">
+
+                    <div class="userPosts userStatGap">
+                        <p>Posts: 0</p>
+                    </div>
+
+                    <div class="userFollowers userStatGap">
+                        <p>Followers: 0</p>
+                    </div>
+
+                    <div class="userFollowing userStatGap">
+                        <p>Following: 0</p>
+                    </div>
 
                 </div>
+
+                <div class="userBio">
+                    <!-- Bio is inserted by userPage.js -->
+                </div>
+
             </div>
-            <button id="showModalButton"><img src="/assets/settingswheel.png" alt="" style="height: 60px; width: 60px;"></button>
+
+            <button
+                id="showModalButton"
+                type="button"
+                aria-label="Open user settings"
+            >
+                <img
+                    src="/assets/settingswheel.png"
+                    alt=""
+                >
+            </button>
+
         </header>
-        <dialog id="settingsDialog">
-            <div style="display: flex; justify-content: space-between; padding-left: 20px; padding-right: 10px; border: solid; background-color: #FFA725; border-color: #cb8720; border-width: 4px;"><h2>User Settings</h2><button id="hideModalButton"><h1>x</h1></button></div>
+
+
+        <!-- USER SETTINGS DIALOG -->
+        <dialog id="settingsDialog" aria-labelledby="settingsTitle">
+
+            <div class="dialogHeader">
+
+                <h2 id="settingsTitle">User Settings</h2>
+
+                <button
+                    id="hideModalButton"
+                    type="button"
+                    aria-label="Close settings"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
             <form id="settingsForm">
-                <br>
+
                 <div class="formGroup">
-                    <label for="username"></label>
-                    <input type="text" id="modalUsernameInput" class="save-local modalInputField" placeholder="Input your username (max 15 char)" maxlength="15">
-                </div>
-                <br>
-                <br>
-                <div class="formGroup">
-                    <label for="userBio"></label>
-                    <input type="text" id="modalBioInput" class="save-local modalInputField" placeholder="Input a bio (max 100 char)" maxlength="100">
-                </div>
-                <br>
-                <br>
-                <h3>Make sure to upload a profile picture!</h3>
-                <h5>Only jpg and png file types width 500x500 dimentions under 5mb supported.</h5>
-                <div class="formGroup">
-                    <label class="customFileUpload">
-                    <input type="file" id="modalFileInput" accept="image/png, image/jpg">
+
+                    <label for="modalUsernameInput">
+                        Username
                     </label>
+
+                    <input
+                        type="text"
+                        id="modalUsernameInput"
+                        class="save-local modalInputField"
+                        placeholder="Enter your username"
+                        maxlength="15"
+                    >
+
                 </div>
-                <br>
-                <div id="statusMessage"></div>
-                <img id="savedImagePreview">
-                <br>
-                <br>
-                <button type="submit"><h2>Submit changes</h2></button>
+
+
+                <div class="formGroup">
+
+                    <label for="modalBioInput">
+                        Biography
+                    </label>
+
+                    <input
+                        type="text"
+                        id="modalBioInput"
+                        class="save-local modalInputField"
+                        placeholder="Tell people a little about yourself"
+                        maxlength="100"
+                    >
+
+                </div>
+
+
+                <div class="formGroup">
+
+                    <label for="modalFileInput">
+                        Profile picture
+                    </label>
+
+                    <p class="inputDescription">
+                        PNG or JPG, maximum 500 x 500 pixels and under 5 MB.
+                    </p>
+
+                    <input
+                        type="file"
+                        id="modalFileInput"
+                        accept="image/png, image/jpeg"
+                    >
+
+                </div>
+
+
+                <div id="statusMessage" role="status" aria-live="polite"></div>
+
+
+                <div class="previewContainer">
+
+                    <img
+                        id="savedImagePreview"
+                        alt="Profile picture preview"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="saveChangesButton"
+                >
+                    Save changes
+                </button>
+
             </form>
+
         </dialog>
-        <div id="classPostSection">
-            <div class="postBox"><button id="post1"><h1>+</h1></button></div>
-            <div class="postBox"><button id="post2"><h1>+</h1></button></div>
-            <div class="postBox"><button id="post3"><h1>+</h1></button></div>
-        </div>
+
+
+        <!-- USER POSTS -->
+        <section id="classPostSection" aria-label="User posts">
+
+            <div class="postBox">
+                <button id="post1" type="button" aria-label="Add first post">
+                    <h1>+</h1>
+                </button>
+            </div>
+
+            <div class="postBox">
+                <button id="post2" type="button" aria-label="Add second post">
+                    <h1>+</h1>
+                </button>
+            </div>
+
+            <div class="postBox">
+                <button id="post3" type="button" aria-label="Add third post">
+                    <h1>+</h1>
+                </button>
+            </div>
+
+        </section>
+
     </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="/jsFiles/addPosts.js"></script>
+    <script type="module" src="/jsFiles/navbar.js"></script>
+    <script type="module" src="/jsFiles/userPage.js"></script>
+
 </body>
-<script type="module" src="/jsFiles/addPosts.js"></script>
-<script type="module" src="/jsFiles/navbar.js"></script>
-<script type="module" src="/jsFiles/userPage.js"></script>
 </html>
