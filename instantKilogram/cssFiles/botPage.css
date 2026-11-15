@@ -1,0 +1,858 @@
+/* =========================================
+   BOT PROFILE HEADER
+   The main profile layout comes from userPage.css.
+========================================= */
+
+.botProfileHeader {
+    align-items: center;
+}
+
+
+/* =========================================
+   BOT ACTION BUTTONS
+========================================= */
+
+#botActions {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.botActionButton {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 112px;
+    min-height: 45px;
+
+    padding: 10px 15px;
+
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+
+    color: #352408;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dmButton {
+    background-color: #fff7e9;
+}
+
+.dmButton:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.followButton {
+    background-color: #c1d8c3;
+}
+
+.followButton:hover {
+    background-color: #d5e6d6;
+    transform: translateY(-2px);
+}
+
+.followButton.isFollowing {
+    background-color: #fff0d5;
+    border-color: rgba(122, 81, 19, 0.25);
+}
+
+.botActionButton:active {
+    transform: scale(0.97);
+}
+
+.botActionButton:focus-visible,
+.postActionButton:focus-visible,
+#closeCommentDialog:focus-visible,
+.submitCommentButton:focus-visible {
+    outline: 3px solid #704300;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   BOT POSTS
+========================================= */
+
+#classPostSection {
+    align-items: stretch;
+}
+
+.botPost {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    min-height: 0;
+    aspect-ratio: auto;
+
+    padding: 0;
+
+    background-color: white;
+    border: 4px solid var(--orange);
+    border-radius: 17px;
+
+    overflow: hidden;
+}
+
+.botPost:hover {
+    transform: translateY(-3px);
+}
+
+.botPostVisual {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    padding: clamp(15px, 2vw, 24px);
+
+    overflow: hidden;
+    color: #352408;
+}
+
+.botPostVisual.sunny {
+    background: linear-gradient(145deg, #ffe1a8, #ffb94e 58%, #ef9441);
+}
+
+.botPostVisual.green {
+    background: linear-gradient(145deg, #e3efcf, #a9cba8 58%, #709b83);
+}
+
+.botPostVisual.pink {
+    background: linear-gradient(145deg, #ffe0dc, #f4b6a8 58%, #d88c88);
+}
+
+.postEyebrow {
+    margin: 0;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.postVisualHeadline {
+    max-width: 95%;
+    margin: auto 0;
+
+    font-size: clamp(23px, 3vw, 37px);
+    font-weight: 800;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+}
+
+.postVisualFooter {
+    margin: 0;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.botPostContent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 13px;
+
+    padding: 15px;
+}
+
+.postCaption {
+    margin: 0;
+
+    color: #39342d;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.postInteractionRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: auto;
+    padding-top: 11px;
+
+    border-top: 1px solid #eee2d0;
+}
+
+.postActionButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    min-height: 36px;
+    padding: 7px 10px;
+
+    background-color: #fff5e4;
+    border: 1px solid #f0dfc4;
+    border-radius: 9px;
+
+    color: #51402b;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.postActionButton:hover {
+    background-color: #ffe7bd;
+    transform: translateY(-1px);
+}
+
+.postActionButton.isLiked {
+    background-color: #ffe0dc;
+    border-color: #f1b8ae;
+    color: #a83232;
+}
+
+.postActionButton .actionIcon {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.postLikeCount {
+    margin-left: auto;
+    color: #756b5d;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   COMMENTS DIALOG
+========================================= */
+
+#commentDialog {
+    width: min(620px, calc(100% - 28px));
+    max-width: 620px;
+    max-height: min(85vh, 760px);
+
+    padding: 0;
+    overflow: hidden;
+
+    background-color: var(--cream-light);
+    color: var(--text-dark);
+
+    border: 4px solid #e8a03b;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#commentDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+#commentDialog .dialogHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#closeCommentDialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: none;
+    border: none;
+    border-radius: 10px;
+
+    color: #8b2600;
+    font-size: 32px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#closeCommentDialog:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    transform: scale(1.08);
+}
+
+.commentDialogBody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    max-height: calc(85vh - 75px);
+    padding: 18px 20px 20px;
+}
+
+.commentPostCaption {
+    margin: 0;
+    padding: 11px 13px;
+
+    background-color: #fff1d9;
+    border-radius: 10px;
+
+    color: #5c472b;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    min-height: 100px;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 3px 4px 8px 0;
+}
+
+.commentItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.commentAvatar {
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    object-fit: cover;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.commentBubble {
+    min-width: 0;
+    flex: 1;
+
+    padding: 9px 12px;
+    background-color: white;
+    border: 1px solid #eee2d0;
+    border-radius: 4px 13px 13px 13px;
+}
+
+.commentItem.isBotComment .commentBubble {
+    background-color: #edf5eb;
+    border-color: #d5e5d4;
+}
+
+.commentMeta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.commentUsername {
+    color: #352d23;
+    font-size: 13px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.botCommentTag {
+    padding: 2px 6px;
+    background-color: #d2e4d1;
+    border-radius: 5px;
+    color: #31513a;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.commentTimestamp {
+    color: #8a8175;
+    font-size: 10px;
+}
+
+.commentMessage {
+    margin: 0;
+    color: #413b33;
+    font-size: 13px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding-top: 13px;
+    border-top: 2px solid #f0dfc4;
+}
+
+#commentForm label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#commentInput {
+    width: 100%;
+    min-height: 85px;
+    resize: vertical;
+
+    padding: 11px 12px;
+    background-color: white;
+    border: 2px solid #e0c59b;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+#commentInput:focus {
+    border-color: var(--orange-dark);
+    outline: none;
+}
+
+#commentStatus {
+    min-height: 16px;
+    margin: 0;
+    color: #8b3d27;
+    font-size: 12px;
+}
+
+.submitCommentButton {
+    align-self: flex-end;
+
+    min-height: 43px;
+    padding: 9px 16px;
+
+    background-color: var(--orange);
+    border: none;
+    border-radius: 9px;
+
+    color: #352408;
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.submitCommentButton:hover {
+    background-color: #ffb94e;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 800px) {
+    .botActionButton {
+        min-width: 100px;
+    }
+
+    .botPostContent {
+        padding: 12px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .botProfileHeader {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 13px;
+    }
+
+    .botProfileHeader #profilePicturePlacement {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .botProfileHeader #infoSection {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    #botActions {
+        grid-column: 2;
+        grid-row: 1;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 7px;
+        min-width: 0;
+    }
+
+    .botActionButton {
+        min-width: 0;
+        min-height: 41px;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .botPost {
+        border-width: 3px;
+        border-radius: 13px;
+    }
+
+    .botPostVisual {
+        padding: 12px;
+    }
+
+    .postEyebrow,
+    .postVisualFooter {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .postVisualHeadline {
+        font-size: clamp(19px, 5vw, 27px);
+    }
+
+    .botPostContent {
+        gap: 9px;
+        padding: 10px;
+    }
+
+    .postCaption {
+        font-size: 12px;
+    }
+
+    .postInteractionRow {
+        gap: 6px;
+        padding-top: 8px;
+    }
+
+    .postActionButton {
+        min-height: 33px;
+        padding: 6px 7px;
+        font-size: 11px;
+    }
+
+    .postLikeCount {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .commentDialogBody {
+        padding: 14px;
+    }
+
+    .commentList {
+        max-height: 35vh;
+    }
+}
+
+
+@media (max-width: 380px) {
+    #botActions {
+        gap: 5px;
+    }
+
+    .botActionButton {
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+
+    #classPostSection {
+        gap: 9px;
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+
+    .postActionButton {
+        gap: 3px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================
+   IMAGE POSTS WITH TEXT OVERLAYS
+========================================= */
+
+/* Override the generic user-page add-post button styling for bot images. */
+.botPost button.botPostVisual {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+
+    margin: 0;
+    padding: clamp(15px, 2vw, 24px);
+
+    overflow: hidden;
+    background: #6c6255;
+    border: 0;
+    border-radius: 0;
+
+    color: white;
+    font-family: inherit;
+    text-align: left;
+    cursor: zoom-in;
+}
+
+.botPostImage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.botPost button.botPostVisual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(
+        180deg,
+        rgba(20, 15, 10, 0.35) 0%,
+        rgba(20, 15, 10, 0.05) 38%,
+        rgba(20, 15, 10, 0.48) 100%
+    );
+
+    pointer-events: none;
+}
+
+.botPost button.botPostVisual::after {
+    z-index: 3;
+    pointer-events: none;
+}
+
+.botPost button.botPostVisual:hover .botPostImage {
+    transform: scale(1.035);
+}
+
+.postImageOverlay {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    width: 100%;
+    min-width: 0;
+    pointer-events: none;
+}
+
+.postEyebrow,
+.postVisualFooter {
+    display: inline-block;
+    max-width: 100%;
+    width: fit-content;
+
+    padding: 6px 9px;
+    background: rgba(255, 245, 228, 0.9);
+    border-radius: 7px;
+
+    color: #3c3022;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 1px;
+    overflow-wrap: anywhere;
+    text-shadow: none;
+}
+
+.postVisualHeadline {
+    max-width: 95%;
+    margin: auto 0;
+    padding: 11px 13px;
+
+    background: rgba(35, 25, 15, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 11px;
+
+    color: white;
+    font-size: clamp(21px, 2.8vw, 35px);
+    font-weight: 800;
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   FULL-SIZE IMAGE MODAL
+========================================= */
+
+#imageDialog {
+    position: fixed;
+
+    width: min(92vw, 1200px);
+    height: min(88vh, 900px);
+    max-width: none;
+    max-height: none;
+
+    margin: auto;
+    padding: 0;
+    overflow: visible;
+
+    background: transparent;
+    border: 0;
+    border-radius: 16px;
+}
+
+#imageDialog::backdrop {
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(4px);
+}
+
+#expandedPostImage {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 88vh;
+
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.4);
+}
+
+#closeImageDialog {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 43px;
+    height: 43px;
+
+    padding: 0;
+    background: var(--orange);
+    border: 3px solid white;
+    border-radius: 50%;
+
+    color: #542f00;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+#closeImageDialog:hover {
+    background: #ffbd5b;
+    transform: scale(1.06);
+}
+
+#closeImageDialog:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .botPost button.botPostVisual {
+        padding: 12px;
+    }
+
+    .postEyebrow,
+    .postVisualFooter {
+        padding: 5px 7px;
+        font-size: 8px;
+        letter-spacing: 0.7px;
+    }
+
+    .postVisualHeadline {
+        padding: 9px 10px;
+        font-size: clamp(18px, 5vw, 26px);
+    }
+
+    #imageDialog {
+        width: 94vw;
+        height: 82vh;
+    }
+
+    #expandedPostImage {
+        max-height: 82vh;
+    }
+
+    #closeImageDialog {
+        top: -11px;
+        right: -7px;
+        width: 39px;
+        height: 39px;
+    }
+}
+
+/* FIX: BOT POST INTERACTION BUTTONS */
+
+.botPost .postInteractionRow .postActionButton {
+    width: auto;
+    height: auto;
+
+    flex: 0 0 auto;
+
+    min-height: 36px;
+    padding: 7px 10px;
+
+    background-color: #fff5e4;
+    border: 1px solid #f0dfc4;
+    border-radius: 9px;
+
+    color: #51402b;
+}
+
+.botPost .postInteractionRow .postActionButton:hover {
+    background-color: #ffe7bd;
+    transform: translateY(-1px);
+}
