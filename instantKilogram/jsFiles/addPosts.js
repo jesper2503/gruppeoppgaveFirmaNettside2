@@ -15,6 +15,21 @@ const postButtons = [
     }
 ];
 
+// Update the number of uploaded posts
+function updatePostCount() {
+
+    const postCount = postButtons.filter(function(post) {
+        return localStorage.getItem(post.storageKey) !== null;
+    }).length;
+
+    const postCountElement = document.querySelector(".userPosts p");
+
+    if (postCountElement) {
+        postCountElement.textContent = "Posts: " + postCount;
+    }
+
+}
+
 // Keep track of which post the user wants to change
 let activePost = null;
 
@@ -165,6 +180,8 @@ function loadSavedImages() {
 
     });
 
+    updatePostCount();
+
 }
 
 
@@ -234,6 +251,7 @@ fileInput.addEventListener("change", function() {
 
             // Save the image in localStorage
             localStorage.setItem(currentPost.storageKey, imageData);
+            updatePostCount();
 
             // Display the new image
             // This also replaces the previous image

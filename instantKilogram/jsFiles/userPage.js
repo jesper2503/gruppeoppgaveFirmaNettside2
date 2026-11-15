@@ -1,6 +1,26 @@
 
 import { userInfo } from "/jsFiles/userInfo.js";
 
+// Count how many bots the user follows
+function getFollowingCount() {
+
+    const botIds = [
+        "tyra",
+        "jesper",
+        "marit",
+        "maria",
+        "kristina"
+    ];
+
+    const followingCount = botIds.filter(function(botId) {
+
+        return localStorage.getItem(`bot_${botId}_followed`) === "true";
+
+    }).length;
+
+    return followingCount;
+}   
+
 // Display user information
 function displayUserInfo() {
     // Profile picture
@@ -19,14 +39,25 @@ function displayUserInfo() {
     userNamePlacement.replaceChildren(userNameInfo);
 
     // User stats
+    const postStorageKeys = [
+    "userPagePostImage1",
+    "userPagePostImage2",
+    "userPagePostImage3"
+    ];
+
+    const postCount = postStorageKeys.filter(function(key) {
+        return localStorage.getItem(key) !== null;
+    }).length;
+
+    // Display post count
     document.querySelector(".userPosts p").textContent =
-        "Posts: " + userInfo.userPosts;
+        "Posts: " + postCount;
 
     document.querySelector(".userFollowers p").textContent =
         "Followers: " + userInfo.userFollowers;
 
     document.querySelector(".userFollowing p").textContent =
-        "Following: " + userInfo.userFollowing;
+        "Following: " + getFollowingCount();
 
     // Bio
     const userBioPlacement = document.querySelector(".userBio");
