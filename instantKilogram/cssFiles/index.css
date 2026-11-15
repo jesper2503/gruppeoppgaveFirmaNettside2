@@ -133,13 +133,6 @@ button {
     cursor: pointer;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-    outline: 3px solid #704300;
-    outline-offset: 3px;
-}
-
 
 /* =========================================
    TABLETS
@@ -196,3 +189,4 @@ input:focus-visible {
     }
 
 }
+

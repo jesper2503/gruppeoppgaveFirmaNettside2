@@ -1,16 +1,11 @@
-/* =========================================
-   BOT PROFILE HEADER
-   The main profile layout comes from userPage.css.
-========================================= */
+/* ==== BOT PROFILE HEADER (The main profile layout comes from userPage.css tho) ==== */
 
 .botProfileHeader {
     align-items: center;
 }
 
 
-/* =========================================
-   BOT ACTION BUTTONS
-========================================= */
+/* ==== BOT ACTION BUTTONS (Likes, comments, follow, dm an all zat jazz) ==== */
 
 #botActions {
     display: flex;
@@ -85,9 +80,7 @@
 }
 
 
-/* =========================================
-   BOT POSTS
-========================================= */
+/* ==== BOT POSTS (The images the bots displays on their page) ==== */
 
 #classPostSection {
     align-items: stretch;
@@ -248,9 +241,7 @@
 }
 
 
-/* =========================================
-   COMMENTS DIALOG
-========================================= */
+/* ==== COMMENTS DIALOG (The modal (Brage A is proud) popup for comments) ==== */
 
 #commentDialog {
     width: min(620px, calc(100% - 28px));
@@ -473,9 +464,9 @@
 }
 
 
-/* =========================================
-   TABLET
-========================================= */
+/* ==== | STYLING FOR DIFFRENT SIZES | ==== */
+
+/* ==== TABLET (Makes it not explode if you open the page on jesper ipad xd (those who knows knows)) ==== */
 
 @media (max-width: 800px) {
     .botActionButton {
@@ -487,10 +478,7 @@
     }
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
+/* ==== MOBILE (Changes the sizing and shtuff for mobile phone layout) ==== */
 
 @media (max-width: 600px) {
     .botProfileHeader {
@@ -602,11 +590,11 @@
 }
 
 
-/* =========================================
-   IMAGE POSTS WITH TEXT OVERLAYS
-========================================= */
+/* ==== | POST ASSIGNMENT DELIVERY EXTRA WORK | ==== */
 
-/* Override the generic user-page add-post button styling for bot images. */
+/* ==== IMAGE POSTS WITH TEXT OVERLAYS ==== */
+
+/* Override the boring ahh userPage styling */
 .botPost button.botPostVisual {
     position: relative;
     display: flex;
@@ -724,9 +712,7 @@
 }
 
 
-/* =========================================
-   FULL-SIZE IMAGE MODAL
-========================================= */
+/* ==== FULL-SIZE IMAGE MODAL (Thislets the user press the bots images to see the fullsized version, wich is pretty rad! :p) ==== */
 
 #imageDialog {
     position: fixed;
@@ -835,9 +821,7 @@
 }
 
 
-/* =========================================
-   COMMENT REPLY CONTEXT
-========================================= */
+/* ==== COMMENT REPLY TWEAKS (The issue was that comments would not ) ==== */
 
 .commentReplyContext {
     flex-basis: 100%;

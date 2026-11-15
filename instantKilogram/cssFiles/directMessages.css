@@ -633,14 +633,6 @@
     border: 0;
 }
 
-.dmMain button:focus-visible,
-.dmMain a:focus-visible,
-.dmMain input:focus-visible,
-.dmMain textarea:focus-visible {
-    outline: 3px solid #704300;
-    outline-offset: 3px;
-}
-
 
 /* =========================================
    TABLETS
