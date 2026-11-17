@@ -1,7 +1,5 @@
 
-/* =========================================
-   WEBSITE HEADER
-========================================= */
+/* header styling */
 
 .siteHeader {
     display: grid;
@@ -62,9 +60,7 @@
 }
 
 
-/* =========================================
-   GENERAL PROFILE CARDS
-========================================= */
+/* user and bot shared profilecard styling */
 
 .profile {
     display: flex;
@@ -90,9 +86,7 @@
 }
 
 
-/* =========================================
-   PROFILE PICTURES
-========================================= */
+/* profile picture styling in cards */
 
 .profile:not(#mainWelcome) > img {
     flex-shrink: 0;
@@ -109,9 +103,7 @@
 }
 
 
-/* =========================================
-   PROFILE INFORMATION
-========================================= */
+/* info next to profile pics */
 
 .profile-info {
     display: flex;
@@ -145,9 +137,7 @@
 }
 
 
-/* =========================================
-   PROFILE LINKS
-========================================= */
+/* clickables on profile */
 
 .profile-link {
     display: block;
@@ -172,9 +162,7 @@
 }
 
 
-/* =========================================
-   SECTION HEADINGS
-========================================= */
+/* headsigs for seperations in main */
 
 .profileSection {
     margin-bottom: 25px;
@@ -192,9 +180,7 @@
 }
 
 
-/* =========================================
-   WELCOME SECTION
-========================================= */
+/* welcome sectio styling */
 
 #mainWelcome {
     display: grid;
@@ -209,9 +195,7 @@
 }
 
 
-/* =========================================
-   WELCOME TEXT
-========================================= */
+/* text in the welcome section (if anyone is reading this, we really messed up the css when people started not doing global styling but when its too far gone its gg's, we deadass had style font-size inline a p instead of doing h1 when they were the EXACT same size at some point) */
 
 #welcomeLeft {
     display: flex;
@@ -267,9 +251,7 @@
 }
 
 
-/* =========================================
-   WELCOME IMAGE
-========================================= */
+/* welcome image (lowkey gleb refference) */
 
 #welcomeRight {
     display: flex;
@@ -298,17 +280,14 @@
 }
 
 
-/* =========================================
-   USER PROFILE CARD
-========================================= */
+/* profile card on homepage */
 
 .userProfileCard {
     min-height: 125px;
 }
 
 
-/* Keep the generated profile information visible.
-   Hide the heading container only while it is empty. */
+/* Profile info visibility controll (makes sure the heading container is only hidden if its empty) */
 
 #mainDivHead:empty {
     display: none;
@@ -320,9 +299,7 @@
 }
 
 
-/* =========================================
-   TABLET LAYOUT
-========================================= */
+/* another tablet override :p */
 
 @media (max-width: 800px) {
 
@@ -359,9 +336,7 @@
 }
 
 
-/* =========================================
-   MOBILE LAYOUT
-========================================= */
+/* and another phone override */
 
 @media (max-width: 600px) {
 
@@ -473,9 +448,7 @@
 }
 
 
-/* =========================================
-   SMALL MOBILE SCREENS
-========================================= */
+/* Very small phones ovverider for styling */
 
 @media (max-width: 380px) {
 
@@ -514,9 +487,7 @@
 }
 
 
-/* =========================================
-   GENERATED USER PROFILE
-========================================= */
+/* This styles the generated profile setion on the homepage */
 
 #mainDivHead {
     display: flex;

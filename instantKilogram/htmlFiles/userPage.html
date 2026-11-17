@@ -12,24 +12,20 @@
 </head>
 
 <body>
-
     <main>
 
         <!-- USER PROFILE HEADER -->
         <header>
-
             <div id="profilePicturePlacement">
-                <!-- Profile picture is inserted by userPage.js -->
+                <!-- Profile picture, userPage.js -->
             </div>
 
             <div id="infoSection">
-
                 <div class="userName">
-                    <!-- Username is inserted by userPage.js -->
+                    <!-- Username, userPage.js -->
                 </div>
 
                 <div class="userStats">
-
                     <div class="userPosts userStatGap">
                         <p>Posts: 0</p>
                     </div>
@@ -41,154 +37,75 @@
                     <div class="userFollowing userStatGap">
                         <p>Following: 0</p>
                     </div>
-
                 </div>
 
                 <div class="userBio">
-                    <!-- Bio is inserted by userPage.js -->
+                    <!-- Bio, userPage.js -->
                 </div>
-
             </div>
 
-            <button
-                id="showModalButton"
-                type="button"
-                aria-label="Open user settings"
-            >
-                <img
-                    src="/assets/settingswheel.png"
-                    alt=""
-                >
+            <button id="showModalButton" type="button" aria-label="Open user settings">
+                <img src="/assets/settingswheel.png" alt="">
             </button>
-
         </header>
 
-
-        <!-- USER SETTINGS DIALOG -->
+        <!-- USER SETTINGS -->
         <dialog id="settingsDialog" aria-labelledby="settingsTitle">
-
             <div class="dialogHeader">
-
                 <h2 id="settingsTitle">User Settings</h2>
-
-                <button
-                    id="hideModalButton"
-                    type="button"
-                    aria-label="Close settings"
-                >
+                <button id="hideModalButton" type="button" aria-label="Close settings">
+                    <!-- FYI this is an HTML entity wich displays an x, I thought it was pretty cool-->
                     &times;
                 </button>
-
             </div>
 
-
             <form id="settingsForm">
-
                 <div class="formGroup">
-
-                    <label for="modalUsernameInput">
-                        Username
-                    </label>
-
-                    <input
-                        type="text"
-                        id="modalUsernameInput"
-                        class="save-local modalInputField"
-                        placeholder="Enter your username"
-                        maxlength="15"
-                    >
-
+                    <label for="modalUsernameInput">Username</label>
+                    <input type="text" id="modalUsernameInput" class="save-local modalInputField" placeholder="Enter your username" maxlength="15">
                 </div>
 
-
                 <div class="formGroup">
-
-                    <label for="modalBioInput">
-                        Biography
-                    </label>
-
-                    <input
-                        type="text"
-                        id="modalBioInput"
-                        class="save-local modalInputField"
-                        placeholder="Tell people a little about yourself"
-                        maxlength="100"
-                    >
-
+                    <label for="modalBioInput">Biography</label>
+                    <input type="text" id="modalBioInput" class="save-local modalInputField" placeholder="Tell people a little about yourself" maxlength="100">
                 </div>
 
-
                 <div class="formGroup">
-
-                    <label for="modalFileInput">
-                        Profile picture
-                    </label>
-
-                    <p class="inputDescription">
-                        PNG or JPG, maximum 500 x 500 pixels and under 5 MB.
-                    </p>
-
-                    <input
-                        type="file"
-                        id="modalFileInput"
-                        accept="image/png, image/jpeg"
-                    >
-
+                    <label for="modalFileInput">Profile picture</label>
+                    <p class="inputDescription">PNG or JPG, maximum 500 x 500 pixels and under 5 MB.</p>
+                    <input type="file" id="modalFileInput" accept="image/png, image/jpeg">
                 </div>
-
 
                 <div id="statusMessage" role="status" aria-live="polite"></div>
-
-
                 <div class="previewContainer">
-
-                    <img
-                        id="savedImagePreview"
-                        alt="Profile picture preview"
-                    >
-
+                    <img id="savedImagePreview" alt="Profile picture preview">
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="saveChangesButton"
-                >
-                    Save changes
-                </button>
-
+                <button type="submit" class="saveChangesButton">Save changes</button>
             </form>
-
         </dialog>
-
 
         <!-- USER POSTS -->
         <section id="classPostSection" aria-label="User posts">
-
             <div class="postBox">
                 <button id="post1" type="button" aria-label="Add first post">
                     <h1>+</h1>
                 </button>
             </div>
-
             <div class="postBox">
                 <button id="post2" type="button" aria-label="Add second post">
                     <h1>+</h1>
                 </button>
             </div>
-
             <div class="postBox">
                 <button id="post3" type="button" aria-label="Add third post">
                     <h1>+</h1>
                 </button>
             </div>
-
         </section>
-
     </main>
 
-
-    <!-- JAVASCRIPT -->
+    <!-- scripts -->
     <script type="module" src="/jsFiles/addPosts.js"></script>
     <script type="module" src="/jsFiles/navbar.js"></script>
     <script type="module" src="/jsFiles/userPage.js"></script>

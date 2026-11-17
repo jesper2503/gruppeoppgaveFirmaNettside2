@@ -6,221 +6,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>InstaKG | Home</title>
+    <title>Home | InstaKG</title>
 
-    <!-- Global styling first -->
+    <!-- Global styling -->
     <link rel="stylesheet" href="/cssFiles/index.css">
 
-    <!-- Homepage styling -->
+    <!-- Spessific styling -->
     <link rel="stylesheet" href="/cssFiles/mainPage.css">
 </head>
 
 <body>
-
     <main>
-
-        <!-- WEBSITE HEADER -->
         <header class="siteHeader">
-
             <h1 id="headerE1">InstaKG</h1>
-
             <img
-                src="/assets/mainIconplaceholder.png"
-                alt="InstaKG logo"
-                id="headerE2"
-            >
-
+                src="/assets/mainIconplaceholder.png" alt="InstaKG logo" id="headerE2">
         </header>
 
 
         <!-- WELCOME SECTION -->
         <section id="mainWelcome" class="profile">
-
             <div id="welcomeLeft">
-
                 <h2>Welcome to InstantKilogram!</h2>
 
-                <p>
-                    Press on any of the options below to interact with the bots!
-                </p>
+                <p>Press on any of the options below to interact with the bots!</p>
 
                 <div class="welcomeLinks">
-
                     <p>
                         Having issues with the page?
                         Refer to our support page
                         <a href="/htmlFiles/supportPage.html">here</a>.
                     </p>
-
                     <p>
                         Want to learn more about us and our guidelines?
                         Check <a href="/htmlFiles/guidelines.html">this</a> out!
                     </p>
-
                 </div>
-
             </div>
-
 
             <div id="welcomeRight">
-
-                <img
-                    src="/assets/placeholderIcon.png"
-                    alt="InstaKG illustration"
-                    class="welcomeImage"
-                >
-
+                <img src="/assets/placeholderIcon.png" alt="InstaKG illustration" class="welcomeImage">
             </div>
-
         </section>
-
 
         <!-- USER PROFILE SECTION -->
         <section class="profileSection">
 
             <h2 class="sectionTitle">Your user-page</h2>
 
-            <a
-                href="/htmlFiles/userPage.html"
-                class="profile-link"
-            >
-
+            <a href="/htmlFiles/userPage.html" class="profile-link">
                 <div class="profile userProfileCard">
-
                     <div id="mainDivHead"></div>
-
                     <div id="mainDiv" class="profile-info">
-                        <!-- User information inserted by mainPage.js -->
+                        <!-- User information comes in here from mainPage.js -->
                     </div>
-
                 </div>
-
             </a>
-
         </section>
-
 
         <!-- BOT PROFILES SECTION -->
         <section class="profileSection">
 
             <h2 class="sectionTitle">Our bots</h2>
 
-
             <a href="/htmlFiles/tyraBot.html" class="profile-link">
-
                 <div class="profile">
-
-                    <img
-                        src="/assets/tyraProfileImage.png"
-                        alt="Tyra's profile picture"
-                    >
-
+                    <img src="/assets/tyraProfileImage.png" alt="Tyra's profile picture">
                     <div class="profile-info">
-
                         <h3>Tyra</h3>
-
                         <p>I love bouldering with my fav bouldering teacher Jesper!</p>
-
                     </div>
-
                 </div>
-
             </a>
-
 
             <a href="/htmlFiles/jesperBot.html" class="profile-link">
-
                 <div class="profile">
-
-                    <img
-                        src="/assets/jesperProfileImage.png"
-                        alt="Jesper's profile picture"
-                    >
-
+                    <img src="/assets/jesperProfileImage.png" alt="Jesper's profile picture">
                     <div class="profile-info">
-
                         <h3>Jesper</h3>
-
                         <p>Live laugh breathe path of exile 2! (11 december!!!!)</p>
-
                     </div>
-
                 </div>
-
             </a>
-
 
             <a href="/htmlFiles/maritBot.html" class="profile-link">
-
                 <div class="profile">
-
-                    <img
-                        src="/assets/maritProfileImage.png"
-                        alt="Marit's profile picture"
-                    >
-
+                    <img src="/assets/maritProfileImage.png" alt="Marit's profile picture">
                     <div class="profile-info">
-
                         <h3>Marit</h3>
-
                         <p>I might like you, but you are not as important as my tomadachi!</p>
-
                     </div>
-
                 </div>
-
             </a>
-
 
             <a href="/htmlFiles/mariaBot.html" class="profile-link">
-
                 <div class="profile">
-
-                    <img
-                        src="/assets/mariaProfileImage.png"
-                        alt="Maria's profile picture"
-                    >
-
+                    <img src="/assets/mariaProfileImage.png" alt="Maria's profile picture">
                     <div class="profile-info">
-
                         <h3>Maria</h3>
-
                         <p>Good playlists, good people, and stories that get longer every time.</p>
-
                     </div>
-
                 </div>
-
             </a>
-
 
             <a href="/htmlFiles/kristinaBot.html" class="profile-link">
 
                 <div class="profile">
 
-                    <img
-                        src="/assets/kristinaProfileImage.png"
-                        alt="Kristina's profile picture"
-                    >
+                    <img src="/assets/kristinaProfileImage.png" alt="Kristina's profile picture">
 
                     <div class="profile-info">
-
                         <h3>Kristina</h3>
-
                         <p>You might not find me at school but you'll find me Downtown!</p>
-
                     </div>
-
                 </div>
-
             </a>
-
         </section>
-
     </main>
 
-
-    <!-- JAVASCRIPT -->
+    <!-- JS modules (fyi using modules as its required for it to work hosted and not locally) -->
     <script type="module" src="/jsFiles/navbar.js"></script>
     <script type="module" src="/jsFiles/mainPage.js"></script>
 

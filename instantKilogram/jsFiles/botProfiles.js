@@ -1,9 +1,4 @@
-/*
- * BOT PROFILE DATA
- *
- * Add future bots as another entry in BOT_PROFILES.
- * botPage.js uses the same layout and interactions for every entry.
- */
+// Ok so short explenation, big ahh const called bot profiles. Each of the profiles has info about the general stuff we display AND the original comments on each page (not autogen but rather fetched from this list) could have just generated a bunch of stuff but I wanted each of the bots starting comments to be sorta interesting and atelast sorta believeable pre interaction. !NOTE! ref:g5f29bm41 (kinda wanna make a little more diverse starting point, most bots have 2 comments earlygame. Would like to make it more diverse)
 
 export const BOT_PROFILES = {
 
@@ -13,7 +8,7 @@ export const BOT_PROFILES = {
         bio: "I love bouldering with my fav bouldering teacher Jesper!",
         profilePicture: "/assets/tyraProfileImage.png",
 
-        // These are the starting counts. Following Tyra adds one follower.
+        //These are starting refs but does update if the follow button updates
         followers: 4,
         following: 4,
 
@@ -50,8 +45,7 @@ export const BOT_PROFILES = {
             }
         ],
 
-        // These comments are saved to localStorage the first time Tyra's page loads.
-        // After that, the saved comment history is used instead of reseeding this list.
+        //These are the predetermined comments, they are saved aswell in localstorage before the new comments so they dont get overwritten
         initialComments: [
             {
                 postId: "tyra-post-1",

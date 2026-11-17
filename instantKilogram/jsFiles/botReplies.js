@@ -1,11 +1,4 @@
-/*
- * BOT REPLY LIBRARY
- *
- * Keep the large pools of reusable bot responses here instead of inside
- * botPage.js. Add a new property for each future bot, using the same ID
- * as its entry in botProfiles.js. The default pool is used until a bot
- * has its own dedicated reply list.
- */
+//Bot reply library, just add anything you want the bot to be able to say in the comments here if yall wanna add any, (remember the "," after the text tho)
 
 export const BOT_REPLY_LIBRARY = {
     tyra: [
@@ -147,7 +140,14 @@ export const BOT_REPLY_LIBRARY = {
         "A bold move. I would probably have done the same and then googled it.",
         "I was promised a simple afternoon. The side quests have multiplied.",
         "I have no objections, only follow-up questions.",
-        "This conversation has better progression than my current to-do list."
+        "This conversation has better progression than my current to-do list.",
+        "I am secretly a submissive little lesbian and noone will see this.",
+        "I want to be dominated by a masc woman atleast once.",
+        "I would partake in sniffing Olivers toes if he gave me a chance I would take! Its a shot in the dark but I'll make it!",
+        "The name Simen allmost sounds like seemen, thats kinda hot",
+        "I was doing a no-nut month, then you came in ;)",
+        "I need some love from a dominant lesbian, im so alone and mask it with a smile.",
+        "xd"
     ],
     marit: [
         "That is one way to describe it. Not the way I would have chosen, but still.",

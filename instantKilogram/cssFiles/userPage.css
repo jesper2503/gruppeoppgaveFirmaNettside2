@@ -1,7 +1,5 @@
 
-/* =========================================
-   PROFILE HEADER
-========================================= */
+/* user profile header (profile pic and info) */
 
 header {
     display: flex;
@@ -25,9 +23,7 @@ header {
 }
 
 
-/* =========================================
-   PROFILE PICTURE
-========================================= */
+/* profile pic size, shape, possitioning */
 
 #profilePicturePlacement {
     display: flex;
@@ -60,9 +56,7 @@ header {
 }
 
 
-/* =========================================
-   USER INFORMATION
-========================================= */
+/* username and bio area styling */
 
 #infoSection {
     flex: 1;
@@ -95,9 +89,7 @@ header {
 }
 
 
-/* =========================================
-   USER STATISTICS
-========================================= */
+/* user stats (posts, followers and following) */
 
 .userStats {
     display: flex;
@@ -133,9 +125,7 @@ header {
 }
 
 
-/* =========================================
-   SETTINGS BUTTON
-========================================= */
+/* settings button styling */
 
 #showModalButton {
     display: flex;
@@ -178,9 +168,7 @@ header {
 }
 
 
-/* =========================================
-   SETTINGS DIALOG
-========================================= */
+/* settings dialog popup styling */
 
 #settingsDialog {
     width: min(550px, calc(100% - 32px));
@@ -207,9 +195,7 @@ header {
 }
 
 
-/* =========================================
-   DIALOG HEADER
-========================================= */
+/* header inside the dialog */
 
 .dialogHeader {
     display: flex;
@@ -261,9 +247,7 @@ header {
 }
 
 
-/* =========================================
-   SETTINGS FORM
-========================================= */
+/* form inside the dialog styling */
 
 #settingsForm {
     display: flex;
@@ -324,9 +308,7 @@ header {
 }
 
 
-/* =========================================
-   FILE INPUT
-========================================= */
+/* file input styling (for pfp) */
 
 #modalFileInput {
     width: 100%;
@@ -358,9 +340,7 @@ header {
 }
 
 
-/* =========================================
-   IMAGE PREVIEW
-========================================= */
+/* the image previewer (in the settigns dialog) */
 
 .previewContainer {
     display: flex;
@@ -384,9 +364,7 @@ header {
 }
 
 
-/* =========================================
-   STATUS MESSAGE
-========================================= */
+/* status message (image loaded successfully) */
 
 #statusMessage {
     min-height: 18px;
@@ -398,9 +376,7 @@ header {
 }
 
 
-/* =========================================
-   SAVE BUTTON
-========================================= */
+/* save changes button */
 
 .saveChangesButton {
     width: 100%;
@@ -436,9 +412,7 @@ header {
 }
 
 
-/* =========================================
-   USER POSTS GRID
-========================================= */
+/* user post's grid layout for the 3 posts (flex was NOT the play) */
 
 #classPostSection {
     display: grid;
@@ -451,9 +425,7 @@ header {
 }
 
 
-/* =========================================
-   INDIVIDUAL POST BOX
-========================================= */
+/* the users post's and the boxes thy are in */
 
 .postBox {
     position: relative;
@@ -488,9 +460,7 @@ header {
 }
 
 
-/* =========================================
-   ADD POST BUTTON
-========================================= */
+/* the + inside the posts for adding post's and styling it for user feedback */
 
 .postBox button {
     display: flex;
@@ -535,9 +505,7 @@ header {
 }
 
 
-/* =========================================
-   IMAGES ADDED TO POSTS
-========================================= */
+/* images that has been uploaded to the boxes */
 
 .postBox img {
     display: block;
@@ -549,9 +517,7 @@ header {
 }
 
 
-/* =========================================
-   TABLET LAYOUT
-========================================= */
+/* tablet overrides */
 
 @media (max-width: 800px) {
 
@@ -573,9 +539,7 @@ header {
 }
 
 
-/* =========================================
-   MOBILE LAYOUT
-========================================= */
+/* phone overrides */
 
 @media (max-width: 600px) {
 
@@ -659,9 +623,7 @@ header {
 }
 
 
-/* =========================================
-   SMALL MOBILE SCREENS
-========================================= */
+/* teeny tiny phones overrides */
 
 @media (max-width: 380px) {
 

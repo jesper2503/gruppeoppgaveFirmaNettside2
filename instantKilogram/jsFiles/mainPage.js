@@ -1,4 +1,4 @@
-// Genererer brukeren sin titlecard i mainpage
+// Generate the users title/profile ect fro localStorage if possible and if there's no localSotrafe info then default to the predetermined object in userInfo (lowkey kinda notices way too late that userInfo.js is absolutely useless and I could have just setlocalStorage and kept it all there. Turned in to a dance from userInfo and lS that I dont have time to fix)
 
 import { userInfo } from "/jsFiles/userInfo.js";
 
