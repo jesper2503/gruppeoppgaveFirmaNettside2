@@ -3,9 +3,7 @@ import { BOT_REPLY_LIBRARY } from "/jsFiles/botReplies.js";
 import { userInfo } from "/jsFiles/userInfo.js";
 
 
-/* =========================================
-   GET THE BOT CONFIGURATION
-========================================= */
+// Get the bot configs from html and stop if it doesnt correspond to a curerent bot
 
 const botId = document.body.dataset.botId;
 const bot = BOT_PROFILES[botId];
@@ -14,12 +12,7 @@ if (!bot) {
     throw new Error(`No bot profile was found for ID: ${botId}`);
 }
 
-
-/* =========================================
-   BOT LOOKUP HELPERS
-========================================= */
-
-// Find a bot by its configured ID.
+// Find the bots by their id function
 function findBotById(id) {
     if (!id) {
         return null;
@@ -29,7 +22,7 @@ function findBotById(id) {
 }
 
 
-// Find a bot by username, ignoring capitalization and extra spaces.
+// Find bit by name (ignoring capitalization and shtuff)
 function findBotByUsername(username) {
     const normalizedUsername = String(username || "")
         .trim()
@@ -45,8 +38,8 @@ function findBotByUsername(username) {
 }
 
 
-// Resolve the real author of a bot comment.
-// Username is checked first because older buggy data may contain the wrong botId.
+// define how the page checks for what bot wrote what comment
+// Username is checked first so old data deosnt fck it up
 function findCommentAuthorBot(comment) {
     if (!comment || comment.authorType !== "bot") {
         return null;
@@ -58,10 +51,7 @@ function findCommentAuthorBot(comment) {
 }
 
 
-/* =========================================
-   DM BUTTON
-   Open the shared inbox with this bot selected.
-========================================= */
+//Dm button
 
 const sendDmButton = document.querySelector("#sendDmButton");
 
@@ -71,10 +61,7 @@ if (sendDmButton) {
 }
 
 
-/* =========================================
-   LOCALSTORAGE KEYS
-   Each bot gets its own separate saved data.
-========================================= */
+//Make seperate keys for each bots so they dont have the same follows comment history an allat
 
 const storagePrefix = `bot_${bot.id}`;
 
@@ -83,9 +70,7 @@ const likesStorageKey = `${storagePrefix}_likes`;
 const commentsStorageKey = `${storagePrefix}_comments`;
 
 
-/* =========================================
-   STORAGE HELPERS
-========================================= */
+// Read anddsave JSON data in localStorage and corresponding error handling
 
 function readJSON(key, fallbackValue) {
     try {
@@ -116,9 +101,7 @@ function saveJSON(key, value) {
 }
 
 
-/* =========================================
-   LOAD SAVED INTERACTION DATA
-========================================= */
+// Load spessific bots info and check that the data has the correc array structure
 
 let isFollowing = localStorage.getItem(followStorageKey) === "true";
 
@@ -132,8 +115,7 @@ if (!Array.isArray(likedPosts)) {
 // Load the saved comments for this bot.
 let comments = readJSON(commentsStorageKey, null);
 
-// Add starter comments only when this bot has no saved comment history.
-// Importantly, each bot comment keeps the identity of its actual author.
+//Create the original demo comments when no history exists in local and keep the identities
 if (!Array.isArray(comments) || comments.length === 0) {
     const currentTime = Date.now();
 
@@ -159,13 +141,7 @@ if (!Array.isArray(comments) || comments.length === 0) {
 }
 
 
-/* =========================================
-   REPAIR OLD SAVED BOT COMMENT IDENTITIES
-
-   An earlier version could accidentally save every bot comment
-   with the profile picture and botId of the page currently open.
-   This repairs those saved records using the comment's username.
-========================================= */
+//Repair old bots comments that has been assigned wrognly
 
 let commentsWereRepaired = false;
 
@@ -200,9 +176,7 @@ if (commentsWereRepaired) {
 }
 
 
-/* =========================================
-   PROFILE ELEMENTS
-========================================= */
+//Collection of refferences to html for profile info/stats ect where it'll be displaued
 
 const profilePicturePlacement = document.querySelector("#profilePicturePlacement");
 const userNamePlacement = document.querySelector(".userName");
@@ -216,9 +190,7 @@ const followButton = document.querySelector("#followButton");
 const postSection = document.querySelector("#classPostSection");
 
 
-/* =========================================
-   DISPLAY BOT PROFILE
-========================================= */
+// Function for bot porfile config data building
 
 function displayBotProfile() {
     const profilePicture = document.createElement("img");
@@ -243,9 +215,7 @@ function displayBotProfile() {
 }
 
 
-/* =========================================
-   FOLLOW / UNFOLLOW
-========================================= */
+// Functionality for updating the follow button and displaying its correct state
 
 function updateFollowButton() {
     followButton.textContent = isFollowing ? "Following" : "Follow";
@@ -270,9 +240,7 @@ followButton.addEventListener("click", () => {
 });
 
 
-/* =========================================
-   POST ELEMENT HELPERS
-========================================= */
+// Reusable helper for html element creation with optional assignments
 
 function makeElement(tagName, className, text = "") {
     const element = document.createElement(tagName);
@@ -294,15 +262,13 @@ function getCommentsForPost(postId) {
 }
 
 
-/* =========================================
-   CREATE BOT POSTS
-========================================= */
+// Function for dynamic botpost generation
 
 function createBotPost(post) {
     const postCard = makeElement("article", "postBox botPost");
     postCard.dataset.postId = post.id;
 
-    // The post image is a button so it can be opened in the full-size viewer.
+    // The post image is a button so it can be opened in the full size viewer
     const visual = makeElement("button", `botPostVisual postImageButton ${post.visualTheme || ""}`);
     visual.type = "button";
     visual.dataset.action = "view-image";
@@ -369,9 +335,7 @@ function displayBotPosts() {
 }
 
 
-/* =========================================
-   LIKE / UNLIKE POSTS
-========================================= */
+// Function for liking and unliking and updating the count/saving status
 
 function updateLikeButton(button, post) {
     const isLiked = likedPosts.includes(post.id);
@@ -412,9 +376,7 @@ function togglePostLike(postId, button) {
 }
 
 
-/* =========================================
-   COMMENTS DIALOG ELEMENTS
-========================================= */
+//gets html ekements used by the comments dialogs
 
 const commentDialog = document.querySelector("#commentDialog");
 const closeCommentDialog = document.querySelector("#closeCommentDialog");
@@ -427,9 +389,7 @@ const commentStatus = document.querySelector("#commentStatus");
 let activePostId = null;
 
 
-/* =========================================
-   DISPLAY COMMENTS
-========================================= */
+//Function for formating creating and displaying comments in the dialog
 
 function formatCommentTime(dateValue) {
     const date = new Date(dateValue);
@@ -455,8 +415,7 @@ function createCommentElement(comment) {
 
     const avatar = makeElement("img", "commentAvatar");
 
-    // Use the actual author of the comment, not the bot page currently open.
-    // Saved botId values are repaired above, and the stored picture is a fallback.
+    //Make the actual commenter connect to the avatar rather than using the bot thats opened
     const commentAuthor = findCommentAuthorBot(comment);
 
     avatar.src = commentAuthor?.profilePicture
@@ -478,8 +437,7 @@ function createCommentElement(comment) {
         makeElement("span", "commentTimestamp", formatCommentTime(comment.createdAt))
     );
 
-    // Replies are saved with the ID of the comment they respond to.
-    // Show that connection in the comment log.
+    //parent id identify reply belonging
     if (comment.replyTo) {
         const parentComment = comments.find(item => item.id === comment.replyTo);
         const parentName = parentComment?.username || "a comment";
@@ -544,9 +502,7 @@ function openComments(postId) {
 }
 
 
-/* =========================================
-   COMMENT BUTTON EVENT DELEGATION
-========================================= */
+//Whole gdamn post section, event delegation for catching without attaching (ref:r9b61zt48)
 
 postSection.addEventListener("click", event => {
     const actionButton = event.target.closest("button[data-action]");
@@ -571,9 +527,7 @@ postSection.addEventListener("click", event => {
 });
 
 
-/* =========================================
-   ADD A USER COMMENT
-========================================= */
+// Automatic bot respons and user comment
 
 function makeCommentId(prefix) {
     return `${bot.id}-${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -598,8 +552,7 @@ function shuffleArray(items) {
 
 
 function chooseReplyingBots() {
-    // The bot whose page is open always replies. Randomly select 0-2
-    // additional bots from the rest of BOT_PROFILES.
+    //Current profile response + 2 more random and randomlu wether they do or not
     const otherBots = Object.values(BOT_PROFILES)
         .filter(candidate => candidate.id !== bot.id);
 
@@ -635,7 +588,7 @@ async function sendAutomaticBotReplies(userComment) {
     for (let index = 0; index < replyingBots.length; index++) {
         const replyingBot = replyingBots[index];
 
-        // Small staggered delays make each response feel like a new comment.
+        // Small delay in messages by requrest from Nilas and Henrik :p
         if (commentDialog.open && activePostId === userComment.postId) {
             commentStatus.textContent = `${replyingBot.name} is typing...`;
         }
@@ -658,8 +611,7 @@ async function sendAutomaticBotReplies(userComment) {
         saveJSON(commentsStorageKey, comments);
         updateCommentButton(userComment.postId);
 
-        // If the user has this post's comment window open, show the reply
-        // as soon as it arrives. Replies are still saved if the dialog closes.
+        //Refresh comment display when a response happens if the comment window is open (save happens anyways)
         if (commentDialog.open && activePostId === userComment.postId) {
             displayComments(userComment.postId);
         }
@@ -711,8 +663,7 @@ commentForm.addEventListener("submit", event => {
         ? `${bot.name} is thinking...`
         : "Comment displayed, but the browser could not save it.";
 
-    // The user's comment is saved first. Bot replies are then added one by
-    // one to the same post's comment log, each linked to this comment ID.
+    //User comment saved, then reply, then save and then connect to comment id
     sendAutomaticBotReplies(newComment);
 });
 
@@ -722,7 +673,7 @@ closeCommentDialog.addEventListener("click", () => {
 });
 
 
-// Clicking the shaded area outside the dialog closes it.
+// Added this so you can click outside the dialog for it to dissapear
 commentDialog.addEventListener("click", event => {
     if (event.target === commentDialog) {
         commentDialog.close();
@@ -730,9 +681,7 @@ commentDialog.addEventListener("click", event => {
 });
 
 
-/* =========================================
-   FULL-SIZE POST IMAGE VIEWER
-========================================= */
+//Full image displayer
 
 const imageDialog = document.querySelector("#imageDialog");
 const expandedPostImage = document.querySelector("#expandedPostImage");
@@ -756,7 +705,7 @@ closeImageDialog.addEventListener("click", () => {
 });
 
 
-// Clicking the dark area outside the image closes the viewer.
+//The same shait, make this universal maby later (ref:p8d17jy53)
 imageDialog.addEventListener("click", event => {
     if (event.target === imageDialog) {
         imageDialog.close();
@@ -764,9 +713,7 @@ imageDialog.addEventListener("click", event => {
 });
 
 
-/* =========================================
-   INITIAL PAGE SETUP
-========================================= */
+//Page setup
 
 displayBotProfile();
 displayBotPosts();

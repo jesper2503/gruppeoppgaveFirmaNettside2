@@ -1,22 +1,19 @@
 
 import { userInfo } from "/jsFiles/userInfo.js";
 
-// =========================================
-// AUTOMATIC USER FOLLOWER GROWTH
-// =========================================
+//Automatic follower growth !NOTE! src:m4p82fb73 (Wanna go back and remove this, its a very lazy workaround. Wanna make it so that after a certain amount of post's you get affection to 100% and the bot follows you. Then you would be able to see who follows you + you wouldnt end up with 10000 followers while testing and coding the project xd)
 
 const FOLLOWER_STORAGE_KEY = "savedUserFollowers";
 const FOLLOWER_TIME_KEY = "savedUserFollowersLastUpdate";
 
-const FOLLOWER_INTERVAL = 5 * 60 * 1000; // 2 minute
-
-
 // Calculate and update the follower count
+const FOLLOWER_INTERVAL = 10 * 60 * 1000; // 10 minnutes
+
 function getUserFollowerCount() {
 
     const savedFollowers = localStorage.getItem(FOLLOWER_STORAGE_KEY);
 
-    // Initialize the follower count on first visit
+    // First visit init
     let followers;
 
     if (savedFollowers === null) {
@@ -35,7 +32,7 @@ function getUserFollowerCount() {
         followers = 0;
     }
 
-    // Get the last update timestamp
+    // Timestamp retrieval from localStorage (for checking when the last update was)
     let lastUpdate = Number(localStorage.getItem(FOLLOWER_TIME_KEY));
 
     if (!Number.isFinite(lastUpdate) || lastUpdate <= 0) {
@@ -45,12 +42,12 @@ function getUserFollowerCount() {
         return followers;
     }
 
-    // Calculate how many 10-minute intervals have passed
+    // Calculate how many 10 minutes has gone by
     const elapsedIntervals = Math.floor(
         (Date.now() - lastUpdate) / FOLLOWER_INTERVAL
     );
 
-    // Increase followers for every completed interval
+    // Increase followers for every 10 minutes passed
     if (elapsedIntervals > 0) {
 
         for (let i = 0; i < elapsedIntervals; i++) {
@@ -61,10 +58,10 @@ function getUserFollowerCount() {
 
         }
 
-        // Save the new follower count
+        // Save count to localStorage
         localStorage.setItem(FOLLOWER_STORAGE_KEY, followers);
 
-        // Advance the timestamp without losing the timer's schedule
+        // update last timestamp while preserving the schedule
         localStorage.setItem(
             FOLLOWER_TIME_KEY,
             lastUpdate + elapsedIntervals * FOLLOWER_INTERVAL
@@ -76,7 +73,7 @@ function getUserFollowerCount() {
 }
 
 
-// Schedule the next automatic update
+// Schedule the next update
 function scheduleFollowerGrowth() {
 
     const lastUpdate = Number(localStorage.getItem(FOLLOWER_TIME_KEY));
@@ -98,7 +95,7 @@ function scheduleFollowerGrowth() {
             followerElement.textContent = "Followers: " + followers;
         }
 
-        // Schedule the next update
+        // I run ts
         scheduleFollowerGrowth();
 
     }, timeUntilNextUpdate);
@@ -133,6 +130,7 @@ function displayUserInfo() {
     profilePicImg.setAttribute("style", "border-radius: 50%;");
 
     profilePicImg.src = localStorage.getItem("savedProfilePic") || userInfo.profilePicture;
+    profilePicImg.alt = "Your profile picture";
     profilePicturePlacement.replaceChildren(profilePicImg);
 
     // Username
@@ -153,7 +151,7 @@ function displayUserInfo() {
         return localStorage.getItem(key) !== null;
     }).length;
 
-    // Display post count
+    // Display the users post count
     document.querySelector(".userPosts p").textContent =
         "Posts: " + postCount;
 
@@ -179,7 +177,7 @@ displayUserInfo();
 scheduleFollowerGrowth();
 
 
-// Modal buttons
+// Modal buttons (for the profile settings tab)
 const settingsDialog = document.querySelector("#settingsDialog");
 const showModalButton = document.querySelector("#showModalButton");
 const hideModalButton = document.querySelector("#hideModalButton");
@@ -202,7 +200,7 @@ const savedImagePreview = document.querySelector("#savedImagePreview");
 const statusMessage = document.querySelector("#statusMessage");
 
 
-// Load previously saved information
+// Load previously saved information into th eform
 function loadSavedSettings() {
 
     modalUsernameInput.value = localStorage.getItem("savedUsername") ?? "";
@@ -283,7 +281,7 @@ function saveProfileChanges(base64String = null) {
 }
 
 
-// Form submission
+// Form submission event handler startup (markiplier refference)
 settingsForm.addEventListener("submit", (e) => {
 
     e.preventDefault();
@@ -309,36 +307,26 @@ settingsForm.addEventListener("submit", (e) => {
         return;
     }
 
-    // Convert image to Base64
+    // Convert image to Base64 !NOTE! ref:z2k91rx56 (base64 is not fully clicking for me so go back and add comments here when I understand it fully)
     const reader = new FileReader();
 
     reader.onload = function(event) {
-
         const base64String = event.target.result;
         const img = new Image();
-
         img.onload = function() {
-
-            // Check image dimensions
             if (img.width > 500 || img.height > 500) {
                 alert("Image must be maximum 500x500 pixels!");
                 return;
             }
-
-            // Everything is valid: save changes
             saveProfileChanges(base64String);
         };
-
         img.onerror = function() {
             alert("Could not read the selected image!");
         };
-
         img.src = base64String;
     };
-
     reader.onerror = function() {
         alert("Something went wrong while reading the image!");
     };
-
     reader.readAsDataURL(file);
 });

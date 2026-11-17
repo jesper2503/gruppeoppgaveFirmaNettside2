@@ -1,7 +1,5 @@
 
-/* =========================================
-   GLOBAL SETTINGS
-========================================= */
+/* global */
 
 * {
     box-sizing: border-box;
@@ -16,9 +14,7 @@
 }
 
 
-/* =========================================
-   BODY
-========================================= */
+/* general body apperance */
 
 body {
     display: flex;
@@ -43,9 +39,7 @@ body {
 }
 
 
-/* =========================================
-   MAIN CONTAINER
-========================================= */
+/* main element styling (the big background box) */
 
 main {
     width: min(1100px, calc(100% - 32px));
@@ -63,9 +57,7 @@ main {
 }
 
 
-/* =========================================
-   NAVBAR
-========================================= */
+/* navbar (kinda did an oopsie using the inbuilt nav element selector instead of classifying it) */
 
 nav {
     display: flex;
@@ -124,9 +116,7 @@ nav img {
 }
 
 
-/* =========================================
-   GENERAL INTERACTIONS
-========================================= */
+/* general button interactiongs */
 
 button {
     font-family: inherit;
@@ -134,9 +124,7 @@ button {
 }
 
 
-/* =========================================
-   TABLETS
-========================================= */
+/* tablet cahnges */
 
 @media (max-width: 800px) {
 
@@ -151,9 +139,7 @@ button {
 }
 
 
-/* =========================================
-   MOBILE PHONES
-========================================= */
+/* phone changes */
 
 @media (max-width: 600px) {
 

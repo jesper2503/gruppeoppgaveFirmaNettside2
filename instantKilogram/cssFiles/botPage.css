@@ -1,11 +1,11 @@
-/* ==== BOT PROFILE HEADER (The main profile layout comes from userPage.css tho) ==== */
+/* BOT PROFILE HEADER (The main profile layout comes from userPage.css tho) */
 
 .botProfileHeader {
     align-items: center;
 }
 
 
-/* ==== BOT ACTION BUTTONS (Likes, comments, follow, dm an all zat jazz) ==== */
+/* BOT ACTION BUTTONS (Likes, comments, follow, dm an all zat jazz) */
 
 #botActions {
     display: flex;
@@ -80,7 +80,7 @@
 }
 
 
-/* ==== BOT POSTS (The images the bots displays on their page) ==== */
+/* BOT POSTS (The images the bots displays on their page) */
 
 #classPostSection {
     align-items: stretch;
@@ -241,7 +241,7 @@
 }
 
 
-/* ==== COMMENTS DIALOG (The modal (Brage A is proud) popup for comments) ==== */
+/* COMMENTS DIALOG (The modal popup for comments) */
 
 #commentDialog {
     width: min(620px, calc(100% - 28px));
@@ -464,9 +464,9 @@
 }
 
 
-/* ==== | STYLING FOR DIFFRENT SIZES | ==== */
+/* STYLING FOR DIFFRENT SIZES ;) */
 
-/* ==== TABLET (Makes it not explode if you open the page on jesper ipad xd (those who knows knows)) ==== */
+/* TABLET */
 
 @media (max-width: 800px) {
     .botActionButton {
@@ -478,7 +478,7 @@
     }
 }
 
-/* ==== MOBILE (Changes the sizing and shtuff for mobile phone layout) ==== */
+/* MOBILE*/
 
 @media (max-width: 600px) {
     .botProfileHeader {
@@ -590,11 +590,9 @@
 }
 
 
-/* ==== | POST ASSIGNMENT DELIVERY EXTRA WORK | ==== */
+/* POST ASSIGNMENT, IMAGE POSTS WITH TEXT OVERLAYS */
 
-/* ==== IMAGE POSTS WITH TEXT OVERLAYS ==== */
-
-/* Override the boring ahh userPage styling */
+/* This is just a huge override of the userPage styling */
 .botPost button.botPostVisual {
     position: relative;
     display: flex;
@@ -712,7 +710,7 @@
 }
 
 
-/* ==== FULL-SIZE IMAGE MODAL (Thislets the user press the bots images to see the fullsized version, wich is pretty rad! :p) ==== */
+/* FULL IMAGE MODAL CSS */
 
 #imageDialog {
     position: fixed;
@@ -821,7 +819,7 @@
 }
 
 
-/* ==== COMMENT REPLY TWEAKS (The issue was that comments would not ) ==== */
+/* COMMENT REPLY CSS tweaks (!NOTE! alot could be adjusted here for optimization, I just resulted do overrides at somepoint cuz I cant be bothered with this little time left to fix it, someone please fix this)*/
 
 .commentReplyContext {
     flex-basis: 100%;
@@ -830,7 +828,7 @@
     font-style: italic;
 }
 
-/* Keep bot action buttons clear of the generic user-page post button rules. */
+/* Keep bot action buttons away from the default (another override) */
 .botPost .postInteractionRow .postActionButton {
     width: auto;
     height: auto;
@@ -848,4 +846,11 @@
 .botPost .postInteractionRow .postActionButton:hover {
     background-color: #ffe7bd;
     transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+    .botPost .postInteractionRow .postActionButton {
+        min-height: 33px;
+        padding: 6px 7px;
+    }
 }

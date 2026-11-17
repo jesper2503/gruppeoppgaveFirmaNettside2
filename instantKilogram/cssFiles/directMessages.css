@@ -1,8 +1,3 @@
-/* =========================================
-   DIRECT MESSAGES PAGE
-   InstaKG colours are inherited from index.css.
-========================================= */
-
 .dmMain {
     display: flex;
     flex-direction: column;
@@ -72,9 +67,7 @@
 }
 
 
-/* =========================================
-   TWO-PANE MESSAGING WORKSPACE
-========================================= */
+/* Seperate convo and active convo list */
 
 .dmWorkspace {
     display: grid;
@@ -90,9 +83,7 @@
 }
 
 
-/* =========================================
-   LEFT SIDEBAR
-========================================= */
+/* left sidebar with available convos and searchbar */
 
 .dmSidebar {
     display: flex;
@@ -305,9 +296,7 @@
 }
 
 
-/* =========================================
-   RIGHT CONVERSATION PANEL
-========================================= */
+/* Actieve convo panel + header and gen layout */
 
 .dmConversation {
     display: flex;
@@ -390,9 +379,7 @@
 }
 
 
-/* =========================================
-   MESSAGE HISTORY
-========================================= */
+/* Message hsitory and its individual message display */
 
 .dmMessageList {
     display: flex;
@@ -492,9 +479,7 @@
 }
 
 
-/* =========================================
-   TYPING INDICATOR
-========================================= */
+/* typing indicator for bot response preperation */
 
 .dmTypingIndicator {
     display: flex;
@@ -541,9 +526,7 @@
 }
 
 
-/* =========================================
-   MESSAGE COMPOSER
-========================================= */
+/* message composer styling */
 
 .dmComposer {
     position: relative;
@@ -634,9 +617,7 @@
 }
 
 
-/* =========================================
-   TABLETS
-========================================= */
+/* tablet adjustment */
 
 @media (max-width: 850px) {
     .dmWorkspace {
@@ -656,9 +637,7 @@
 }
 
 
-/* =========================================
-   MOBILE: LIST FIRST, CHAT AFTER SELECTION
-========================================= */
+/* mobile layout (make users see convo list first and then the selected chat) */
 
 @media (max-width: 650px) {
     .dmMain {
@@ -777,9 +756,7 @@
 }
 
 
-/* =========================================
-   VERY SMALL MOBILE SCREENS
-========================================= */
+/* extra overides for very verey small screens (had someone with a smaller phone still have issues after the original mobile tweaks) */
 
 @media (max-width: 380px) {
     .dmPageHeading {
@@ -809,10 +786,7 @@
     }
 }
 
-/* =========================================
-   FIX: DM CONVERSATION LIST
-   Override the global navbar styling.
-========================================= */
+/* override global adjustments (nav element didnt mix well with the dm page, I should have just made changes to the navs with a diffrent class, I didnt tho and this is an easier fix at this point, but not optimal.) */
 
 .dmChatList {
     position: static;

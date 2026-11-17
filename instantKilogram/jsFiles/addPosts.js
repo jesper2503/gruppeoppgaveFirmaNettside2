@@ -1,5 +1,5 @@
 
-// Get the three post buttons from the HTML
+// Connect the 3 user posts to thir local storage key
 const postButtons = [
     {
         button: document.getElementById("post1"),
@@ -15,7 +15,7 @@ const postButtons = [
     }
 ];
 
-// Update the number of uploaded posts
+// Update the post counter on the profile page
 function updatePostCount() {
 
     const postCount = postButtons.filter(function(post) {
@@ -30,26 +30,26 @@ function updatePostCount() {
 
 }
 
-// Keep track of which post the user wants to change
+// Keep track of which post the user wants to change with ths variable
 let activePost = null;
 
-// Create a file input element
+// Create a file input element (file picker for images only)
 const fileInput = document.createElement("input");
 
 fileInput.type = "file";
 fileInput.accept = "image/*";
 fileInput.style.display = "none";
 
-// Add the file input to the HTML
+// Add the filepicker to HTML
 document.body.appendChild(fileInput);
 
 
-// Open the file explorer for a specific post
+// Open the file explorer for a specific post and clear the old data
 function openFileExplorer(post) {
 
     activePost = post;
 
-    // Reset the input so the same image can be selected again
+    // Reset the input (so that the same image can be selected again)
     fileInput.value = "";
 
     fileInput.click();
@@ -62,14 +62,14 @@ function displayPostImage(post, imageData) {
 
     const postBox = post.button.parentElement;
 
-    // Make the postBox a positioning container
+    // Make the postBox a "positioning container"
     postBox.style.position = "relative";
     postBox.style.overflow = "hidden";
 
-    // Check if the post already has an image
+    // Check if theres allready an image in this b-word (box)
     let image = postBox.querySelector(".postImage");
 
-    // Create the image if it doesn't exist
+    // Create the image if it doesn't exist and sets dimensions for the img
     if (!image) {
 
         image = document.createElement("img");
@@ -86,14 +86,14 @@ function displayPostImage(post, imageData) {
 
     }
 
-    // Set the image source
+    // Set the imagr source
     image.src = imageData;
 
 
-    // Check if the post already has a hover overlay
+    // Check if the post already has an hover overlay
     let overlay = postBox.querySelector(".changeImageOverlay");
 
-    // Create the hover overlay if it doesn't exist
+    // Here we create the hover overlay if it doesnt exist
     if (!overlay) {
 
         overlay = document.createElement("div");
@@ -108,18 +108,18 @@ function displayPostImage(post, imageData) {
         overlay.style.width = "100%";
         overlay.style.height = "100%";
 
-        // Center the text
+        // Centre the text
         overlay.style.display = "flex";
         overlay.style.justifyContent = "center";
         overlay.style.alignItems = "center";
 
-        // Overlay appearance
+        // Overlay: background, text color, font size/wiehgt
         overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         overlay.style.color = "white";
         overlay.style.fontSize = "18px";
         overlay.style.fontWeight = "bold";
 
-        // Hide the overlay until the user hovers
+        // Init transparent
         overlay.style.opacity = "0";
         overlay.style.transition = "opacity 0.2s";
 
@@ -155,13 +155,13 @@ function displayPostImage(post, imageData) {
 
     }
 
-    // Hide the original plus button
+    // Hide the original pluss button
     post.button.style.display = "none";
 
 }
 
 
-// Load previously saved images from localStorage
+// Load saved images from localStorage
 function loadSavedImages() {
 
     postButtons.forEach(function(post) {
@@ -185,7 +185,7 @@ function loadSavedImages() {
 }
 
 
-// Make the plus buttons open the file explorer
+// Make the pluss buttons open the file explorer
 postButtons.forEach(function(post) {
 
     if (!post.button) {
@@ -201,7 +201,7 @@ postButtons.forEach(function(post) {
 });
 
 
-// Handle the selected image
+// Event handler when user selects a file
 fileInput.addEventListener("change", function() {
 
     const file = fileInput.files[0];
@@ -211,7 +211,7 @@ fileInput.addEventListener("change", function() {
         return;
     }
 
-    // Make sure the selected file is an image
+    // Make sure the selected image is an image
     if (!file.type.startsWith("image/")) {
 
         alert("Please select an image file.");
@@ -221,7 +221,7 @@ fileInput.addEventListener("change", function() {
 
     }
 
-    // Maximum file size: 1 MB
+    // (For ctrl+f later, "noteToSelf:ID:f5k39hq22") Set max file size to 1mb and denies anything over it !Note if we change from local storage then we could try to increase file size but keep for now, ill ask K or if we care to we could maby try to fix after assignment!
     const maximumFileSize = 1024 * 1024;
 
     if (file.size > maximumFileSize) {
@@ -240,47 +240,25 @@ fileInput.addEventListener("change", function() {
         return;
     }
 
-    // Convert the image into Base64 format
+    // Convert the image into Base64 format (For ctrl+f later, "noteToSelf:ID:m8p24vx71") Read up on this, dont fully understand base64 filereading yet
     const reader = new FileReader();
-
     reader.onload = function() {
-
         const imageData = reader.result;
-
         try {
-
-            // Save the image in localStorage
             localStorage.setItem(currentPost.storageKey, imageData);
             updatePostCount();
-
-            // Display the new image
-            // This also replaces the previous image
             displayPostImage(currentPost, imageData);
-
         } catch (error) {
-
             alert("Could not save the image. Your browser's localStorage might be full.");
-
         }
-
-        // Reset the file input
         fileInput.value = "";
-
     };
-
     reader.onerror = function() {
-
         alert("Something went wrong while reading the image.");
-
         fileInput.value = "";
-
     };
-
-    // Read the image as a Base64 data URL
     reader.readAsDataURL(file);
-
 });
-
 
 // Display saved images when the page loads
 loadSavedImages();

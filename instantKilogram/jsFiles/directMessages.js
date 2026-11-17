@@ -3,9 +3,7 @@ import { BOT_DM_GREETINGS, BOT_DM_REPLY_LIBRARY } from "/jsFiles/botDmReplies.js
 import { userInfo } from "/jsFiles/userInfo.js";
 
 
-/* =========================================
-   INBOX CONFIGURATION
-========================================= */
+//Bot config setup (lookup object gen for finding bots)
 
 const bots = Object.values(BOT_PROFILES);
 const botById = Object.fromEntries(bots.map(bot => [bot.id, bot]));
@@ -17,9 +15,7 @@ if (bots.length === 0) {
 }
 
 
-/* =========================================
-   PAGE ELEMENTS
-========================================= */
+//This is a massive const section for the html elements we need later
 
 const workspace = document.querySelector("#dmWorkspace");
 const chatList = document.querySelector("#dmChatList");
@@ -42,9 +38,7 @@ const composerHint = document.querySelector("#dmComposerHint");
 const backButton = document.querySelector("#dmBackButton");
 
 
-/* =========================================
-   CURRENT USER INFORMATION
-========================================= */
+//Function that gets users username and pfp from the storage and default as a fallback
 
 function getCurrentUser() {
     const savedName = localStorage.getItem("savedUsername");
@@ -57,10 +51,7 @@ function getCurrentUser() {
 }
 
 
-/* =========================================
-   STORAGE HELPERS
-   Each bot has its own DM history and pending replies.
-========================================= */
+//helper functions for local !Note! ref:x6j90cn25 (I kinda want to make a big helper function library and export it after the project handin for the whole website)
 
 function messagesStorageKey(botId) {
     return `bot_${botId}_dm_messages`;
@@ -107,9 +98,7 @@ function createId(prefix) {
 }
 
 
-/* =========================================
-   CONVERSATION DATA
-========================================= */
+// Creation and retrieval/saving conversations
 
 function createMessage(bot, senderType, messageText) {
     const currentUser = getCurrentUser();
@@ -138,8 +127,7 @@ function getConversation(bot) {
         );
     }
 
-    // Every new chat starts with a bot greeting. This is saved just like
-    // normal messages, so it will not be recreated after a refresh.
+    //intial gretting  if a convo has no hisotry, and then prevent it from recreating every time the page refreshes
     const greeting = BOT_DM_GREETINGS[bot.id]
         || `Hi! Thanks for messaging me. What's up?`;
 
@@ -161,9 +149,7 @@ function addMessage(bot, message) {
 }
 
 
-/* =========================================
-   DATE AND DISPLAY HELPERS
-========================================= */
+//Date and general display helpers for timestamps
 
 const timeFormatter = new Intl.DateTimeFormat(undefined, {
     hour: "2-digit",
@@ -220,9 +206,7 @@ function setImageSource(image, source, altText) {
 }
 
 
-/* =========================================
-   RENDER ONE MESSAGE
-========================================= */
+//Here we define how a message is turned into html with all its refferals (timestamp sender ect)
 
 function createMessageElement(bot, message) {
     const isBotMessage = message.senderType === "bot";
@@ -254,9 +238,7 @@ function createMessageElement(bot, message) {
 }
 
 
-/* =========================================
-   RENDER ACTIVE CONVERSATION
-========================================= */
+// Function for displaying the current convo and updating the caht interface on the right panel
 
 let activeBotId = null;
 const pendingCounts = new Map();
@@ -325,9 +307,7 @@ function renderConversation(botId) {
 }
 
 
-/* =========================================
-   CONVERSATION LIST / SIDEBAR
-========================================= */
+//Convo sidebar (bot selection in dm page)
 
 function getLastMessage(bot) {
     const messages = getConversation(bot);
@@ -404,9 +384,7 @@ function renderSidebar(searchTerm = "") {
 }
 
 
-/* =========================================
-   BOT REPLY SELECTION
-========================================= */
+//Bot reply logic for appropriate response !NOTE! ref:t8v43dz17 (Not fully happy about this nor my understanding of how it works fully)
 
 function chooseBotReply(botId, userMessage, conversation) {
     const replyLibrary = BOT_DM_REPLY_LIBRARY[botId] || BOT_DM_REPLY_LIBRARY.tyra;
@@ -436,11 +414,7 @@ function chooseBotReply(botId, userMessage, conversation) {
 }
 
 
-/* =========================================
-   PERSISTENT DELAYED BOT REPLIES
-   Pending replies are saved as well. If the user refreshes while a bot is
-   typing, the reply is restored and delivered after the remaining delay.
-========================================= */
+//Save pending replies in case user exits before bot finishes its send delay
 
 function setPendingCount(botId, count) {
     if (count <= 0) {
@@ -478,7 +452,7 @@ function schedulePendingReply(bot, pendingReply, delayOverride = null) {
                 renderConversation(bot.id);
             }
 
-            // The latest preview and typing status in the sidebar are refreshed too.
+            // Refresh the sidebar for its latest message prebiew and typing status
             renderSidebar(searchInput.value);
         }
 
@@ -510,7 +484,7 @@ function queueBotReply(bot, userMessage, conversation) {
     if (saved) {
         schedulePendingReply(bot, pendingReply);
     } else {
-        // Still respond during this visit if browser storage is unavailable.
+        // Alternate reponse mechanism if localStorage vails, (bot can eply during current session even if the pending reply cant be saved)
         setPendingCount(bot.id, (pendingCounts.get(bot.id) || 0) + 1);
         window.setTimeout(() => {
             addMessage(bot, createMessage(bot, "bot", pendingReply.message));
@@ -521,9 +495,7 @@ function queueBotReply(bot, userMessage, conversation) {
 }
 
 
-/* =========================================
-   SEND A MESSAGE
-========================================= */
+//Send message function aswell as the update and bot response scheduling
 
 function sendCurrentMessage() {
     const messageText = messageInput.value.trim();
@@ -570,9 +542,7 @@ function resizeMessageInput() {
 messageInput.addEventListener("input", resizeMessageInput);
 
 
-/* =========================================
-   SWITCH ACTIVE CHAT / URL STATE
-========================================= */
+//Here we switch between active convo's and sync the bot with the url
 
 function setActiveBot(botId, updateUrl = false) {
     if (!botById[botId]) {
@@ -604,14 +574,12 @@ window.addEventListener("popstate", () => {
 });
 
 
-/* =========================================
-   INITIALIZE THE INBOX
-========================================= */
+//Final init of the inbox (if anyone reads this, the box by roddy ricch is still lowkey a banger idc)
 
-// Ensure every bot has its own saved conversation and a welcome message.
+//Make sure every bot has a convo
 bots.forEach(bot => getConversation(bot));
 
-// Resume any delayed replies that were still pending when the page refreshed.
+// Restore bot replies that were waiting to be delivered (if some lunatic refreshes 1 seccond after sending a dm)
 restorePendingReplies();
 
 const requestedBotId = new URLSearchParams(window.location.search).get("bot");

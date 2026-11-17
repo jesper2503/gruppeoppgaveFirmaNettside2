@@ -1,8 +1,4 @@
-/*
- * DIRECT-MESSAGE REPLY LIBRARY
- * These are scripted replies, not a live AI connection.
- * Add or edit messages here to change each bot's DM personality.
- */
+//Another library of responses greetings and whatnot for dm's !Note! ref:h3s74wk96 (Should maby have made 1 big ahh list and just had that 1 list for dms and comments, just in general the structure is a little wack mainly due to lack of time to finetune the project. Wanna go back and redo alot of this tho aswell as the duplicate functions for storing in local storage in a bunch of areas. Could be a fun after project for exams)
 
 export const BOT_DM_GREETINGS = {
     tyra: "heyyy!! welcome to my DMs ☀️ what's happening?",
